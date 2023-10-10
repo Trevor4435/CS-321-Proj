@@ -1,8 +1,5 @@
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 import org.junit.jupiter.api.*;
-
-
 
 public class ValidationTester {
     
@@ -14,6 +11,4 @@ public class ValidationTester {
         String test = BusinessObject.Hello();
         assertTrue(test.equals("Hello World!"));
     }
-
-
 }
