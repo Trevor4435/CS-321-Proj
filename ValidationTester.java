@@ -25,7 +25,8 @@ public class ValidationTester {
     }
 
     @Test
-    @DisplayName("Attempt to read an empty Reviewer list."){
+    @DisplayName("Attempt to read an empty Reviewer list.")
+    void pullEmptyReview(){
         String output = WorkFlow.getNextRef("Reviewer");
         assertTrue(output.equals("Coffee Time"));
     }
