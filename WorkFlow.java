@@ -4,5 +4,7 @@ public class WorkFlow {
         return 5;
     }
 
-
+    protected static String getNextRef(String employee){
+        return "Humbug";
+    }
 }
