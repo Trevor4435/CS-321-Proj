@@ -23,4 +23,10 @@ public class ValidationTester {
         String output = WorkFlow.getNextRef("Reviewer");
         assertTrue(output.equals("123"));
     }
+
+    @Test
+    @DisplayName("Attempt to read an empty Reviewer list."){
+        String output = WorkFlow.getNextRef("Reviewer");
+        assertTrue(output.equals("Coffee Time"));
+    }
 }
