@@ -1,14 +1,9 @@
 public class Business{
 
 
-    public int CreateNewBO(String[] input){
+    protected static Business CreateNewBO(){
 
-
-        return 1;
-    }
-
-    public String Hello(){
-        return("Hello World!");
+        return null;
     }
 
 }
