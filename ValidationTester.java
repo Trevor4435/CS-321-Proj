@@ -7,7 +7,7 @@ public class ValidationTester {
     @DisplayName("Attempt to create new BO.")
     void newBOTest(){
         Business house = Business.createNewBO();
-        assertTrue(house != null);
+        assertTrue(house instanceof Business);
     }
 
     @Test
@@ -17,6 +17,13 @@ public class ValidationTester {
         house.setFirstName("John");
         String output = house.getFirstName();
         assertTrue(output.equals("John"));
+    }
+
+    @Test
+    @DisplayName("Invalid Reference number to WorkFlow")
+    void invalidWorkAdd(){
+        int status = WorkFlow.addWorkFlow(-1, "Reviewer");
+        assertTrue(status == -1);
     }
 
     @Test
