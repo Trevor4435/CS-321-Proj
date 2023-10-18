@@ -14,7 +14,7 @@ public class ValidationTester {
     @DisplayName("Attempt to set a name to the business object.")
     void setBOName(){
         Business house = Business.createNewBO();
-        house.setFirstName("John");
+        //house.setFirstName("John");
         String output = house.getFirstName();
         assertTrue(output.equals("John"));
     }

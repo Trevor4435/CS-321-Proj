@@ -7,27 +7,27 @@ public class Business{
         return null;
     }
     
-    protected static String getAlienNumber(){
+    protected String getAlienNumber(){
         return "number";
     }
 
-    protected static String getFirstName(){
+    protected String getFirstName(){
         return "supercalifragilisticexpialidocious";
     }
 
-    protected static String getLastName(){
+    protected String getLastName(){
         return "";
     }
 
-    protected static String getMiddleName(){
+    protected String getMiddleName(){
         return "";
     }
 
-    protected static String getAddress(){
+    protected String getAddress(){
         return "space";
     }
 
-    protected static String getRefNum(){
+    protected String getRefNum(){
         return "-1";
     }
 
