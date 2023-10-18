@@ -6,8 +6,17 @@ public class ValidationTester {
     @Test
     @DisplayName("Attempt to create new BO.")
     void newBOTest(){
-        Business house = Business.CreateNewBO();
+        Business house = Business.createNewBO();
         assertTrue(house != null);
+    }
+
+    @Test
+    @DisplayName("Attempt to set a name to the business object.")
+    void setBOName(){
+        Business house = Business.createNewBO();
+        house.setFirstName("John");
+        String output = house.getFirstName();
+        assertTrue(output.equals("John"));
     }
 
     @Test
