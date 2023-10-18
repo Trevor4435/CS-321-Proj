@@ -1,7 +1,8 @@
 public class Business{
+    private String firstName;
 
 
-    protected static Business CreateNewBO(){
+    public static Business createNewBO(){
 
         return null;
     }
@@ -19,7 +20,7 @@ public class Business{
     }
 
     protected static String getMiddleName(){
-        return " ";
+        return "";
     }
 
     protected static String getAddress(){
