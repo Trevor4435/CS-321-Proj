@@ -10,11 +10,7 @@ public class ValidationTester {
         assertTrue(house != null);
     }
 
-    @Test
-    @DisplayName("Attemp to save file")
-    void saveFileTest(){
-        Business
-    }
+    
 
 
     @Test
