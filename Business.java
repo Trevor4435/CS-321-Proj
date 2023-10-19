@@ -6,4 +6,14 @@ public class Business{
         return null;
     }
 
+    protected static int saveFile(){
+        return -100;
+    }
+
+    protected static int getFile(){
+        return -100;
+    }
+
+    
+
 }
