@@ -1,5 +1,4 @@
 public class Business{
-    private String firstName;
 
 
     public static Business createNewBO(){
@@ -30,8 +29,6 @@ public class Business{
     protected String getRefNum(){
         return "-1";
     }
-
-    
 
  
 }
