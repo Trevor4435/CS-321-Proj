@@ -1,6 +1,6 @@
 public class WorkFlow {
     
-    protected static int addWorkFlow(int refNumber, String Target){
+    protected static int addWorkFlow(String refNumber, String Target){
         return 5;
     }
 

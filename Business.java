@@ -1,10 +1,21 @@
 public class Business{
-    private String firstName;
 
 
     public static Business createNewBO(){
 
         return null;
+    }
+
+    protected int getFile( String refNum){
+       return -1; 
+    }
+
+    protected int validate(){
+        return -1;
+    }
+
+    protected int saveFile(){
+        return -1;
     }
     
     protected String getAlienNumber(){
@@ -38,8 +49,6 @@ public class Business{
     protected String getRefNum(){
         return "-1";
     }
-
-    
 
  
 }
