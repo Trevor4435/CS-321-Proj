@@ -21,7 +21,7 @@ public class ValidationTester {
     
       
     @Test
-    @DisplayName("")
+    @DisplayName("test save file with valid input")
     void saveFileBOTest1(){
         Business BO = Business.createNewBO();
         BO.setRefNumber("1");
@@ -39,7 +39,7 @@ public class ValidationTester {
     }
 
     @Test
-    @DisplayName("Check if return value of save file is valid, there should be no files to save")
+    @DisplayName("Check if return value of save file is valid when there should be no files to save")
     void saveFileBOTest2(){
         Business house = Business.createNewBO();
         int output = house.saveFile();
@@ -47,7 +47,7 @@ public class ValidationTester {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("test valid input, using getRef method")
     void saveFileBOTest3(){
         
         Business BO = Business.createNewBO();
@@ -105,7 +105,7 @@ public class ValidationTester {
     }
 
     @Test
-    @DisplayName("Testing the status of valid input, without using getters, also file may not exist")
+    @DisplayName("Testing the status of valid input, without using getters,when file may not exist")
     void getFileBOTest3(){
         Business house = Business.createNewBO();
         int output = house.getFile("1");
@@ -113,7 +113,7 @@ public class ValidationTester {
     }
     
     @Test
-    @DisplayName("Testing the status of invalid output, unknown if file exists")
+    @DisplayName("Testing the status of invalid output, when unknown if file exists")
     void getFileBOTest4(){
         Business house = Business.createNewBO();
         int output = house.getFile("hihihi");
