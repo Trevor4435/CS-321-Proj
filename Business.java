@@ -2,19 +2,10 @@ public class Business{
 
 
     public static Business createNewBO(){
-
         return null;
     }
 
-    protected int getFile( String refNum){
-       return -1; 
-    }
-
     protected int validate(){
-        return -1;
-    }
-
-    protected int saveFile(){
         return -1;
     }
     
@@ -26,7 +17,7 @@ public class Business{
         return -100;
     }
 
-    protected static int getFile(){
+    protected static int getFile(String refNumber){
         return -100;
     }
     
