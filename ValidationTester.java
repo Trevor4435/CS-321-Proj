@@ -142,4 +142,13 @@ public class ValidationTester {
         assertTrue(output.equals("Coffee Time"));
     }
 
+
+    @Test
+    @DisplayName("Attempt to check the valid first name");
+    void isValidFirstName(){
+        Business BO = Business.createNewBO();
+        //BO.setFirstName("Hank");
+        int result = BO.validate();
+        assertTrue(result == 1);
+    }
 }
