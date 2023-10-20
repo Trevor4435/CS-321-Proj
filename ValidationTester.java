@@ -20,19 +20,36 @@ public class ValidationTester {
     }
     
     @Test
-    @DisplayName("Attempt to save a file to BO.")
-    void saveFileBOTest(){
+    @DisplayName("Check if return value of save file is valid")
+    void saveFileBOTest1(){
         Business house = Business.createNewBO();
-        String output = house.getFile();
-
-
+        int output = house.saveFile();
+        assertTrue(output>0);
     }
 
-     @Test
-    @DisplayName("Attempt to get a file to BO.")
+    @Test
+    @DisplayName("Attempt to save a file to BO.")
+    void saveFileBOTest2(){
+        Business house = Business.createNewBO();
+        int output = house.saveFile();
+        assertTrue(output>0);
+    }
+
+
+
+    @Test
+    @DisplayName("Attempt to get a null file to BO.")
+    void getNullFileBOTest(){
+        Business house = Business.createNewBO();
+        int output = house.getFile(null);
+        assertTrue(output == -1);
+    }
+
+    @Test
+    @DisplayName("Attempt to get a null file to BO.")
     void getFileBOTest(){
         Business house = Business.createNewBO();
-        String output = house.getFile(refNumber:null);
+        int output = house.getFile(null);
         assertTrue(output == -1);
     }
 
