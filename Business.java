@@ -5,6 +5,18 @@ public class Business{
 
         return null;
     }
+
+    protected int getFile( String refNum){
+       return -1; 
+    }
+
+    protected int validate(){
+        return -1;
+    }
+
+    protected int saveFile(){
+        return -1;
+    }
     
     protected String getAlienNumber(){
         return "number";
