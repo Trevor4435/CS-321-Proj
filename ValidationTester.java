@@ -144,10 +144,16 @@ public class ValidationTester {
 
 
     @Test
-    @DisplayName("Attempt to check the valid first name");
-    void isValidFirstName(){
+    @DisplayName("Attempt to check the valid inputs");
+    void isValidInputs(){
         Business BO = Business.createNewBO();
-        //BO.setFirstName("Hank");
+        BO.setRefNumber("1");
+        BO.setAlienNumber("111111111");
+        BO.setLastName("Lee");
+        BO.setFirstName("Tom");
+        String[] midName = {"Alpha", "Beta"};
+        BO.setMiddleName(midName);
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         int result = BO.validate();
         assertTrue(result == 1);
     }

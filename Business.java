@@ -6,7 +6,7 @@ public class Business{
     }
 
     protected int validate(){
-        return -1;
+        return 100;
     }
     
     protected int saveFile(){
@@ -14,10 +14,10 @@ public class Business{
     }
 
     // Set methods
-    protected void setAlienNumber(int newAlienNum){
+    protected void setAlienNumber(String newAlienNum){
     }
 
-    protected void setRefNumber(int newRefNum){
+    protected void setRefNumber(String newRefNum){
     }
 
 
@@ -33,15 +33,10 @@ public class Business{
     protected void setAddress(String address){
     }
 
-    protected void setDate(String date){
+    protected void setDOB(String date){
     }
 
-    protected void setMonth(String month){
-    }
-
-    protected void setYear(String year){
-    }
-    
+  
 
     // Get methods
     protected int getFile(String refNumber){
