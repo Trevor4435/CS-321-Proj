@@ -9,16 +9,19 @@ public class Business{
         return -1;
     }
     
-    protected String getAlienNumber(){
-        return "number";
-    }
-
     protected static int saveFile(){
         return -100;
     }
 
+    // Set methods
+
+    // Get methods
     protected static int getFile(String refNumber){
         return -100;
+    }
+
+    protected String getAlienNumber(){
+        return "number";
     }
     
     protected String getFirstName(){
