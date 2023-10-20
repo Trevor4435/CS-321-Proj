@@ -39,7 +39,7 @@ public class ValidationTester {
 
     @Test
     @DisplayName("Attempt to get a null file to BO.")
-    void getNullFileBOTest(){
+    void getFileBOTest1(){
         Business house = Business.createNewBO();
         int output = house.getFile(null);
         assertTrue(output == -1);
@@ -47,10 +47,10 @@ public class ValidationTester {
 
     @Test
     @DisplayName("Attempt to get a null file to BO.")
-    void getFileBOTest(){
+    void getFileBOTest2(){
         Business house = Business.createNewBO();
-        int output = house.getFile(null);
-        assertTrue(output == -1);
+        int output = house.getFile("1");
+        assertTrue(output>0);
     }
 
 
