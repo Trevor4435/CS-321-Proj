@@ -18,6 +18,24 @@ public class ValidationTester {
         String output = house.getFirstName();
         assertTrue(output.equals("John"));
     }
+    
+    @Test
+    @DisplayName("Attempt to save a file to BO.")
+    void saveFileBOTest(){
+        Business house = Business.createNewBO();
+        String output = house.getFile();
+
+
+    }
+
+     @Test
+    @DisplayName("Attempt to get a file to BO.")
+    void getFileBOTest(){
+        Business house = Business.createNewBO();
+        String output = house.getFile(refNum:null);
+        assertTrue(output == -1);
+    }
+
 
     @Test
     @DisplayName("Invalid Reference number to WorkFlow")
