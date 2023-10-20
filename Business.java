@@ -9,14 +9,14 @@ public class Business{
         return -1;
     }
     
-    protected static int saveFile(){
+    protected int saveFile(){
         return -100;
     }
 
     // Set methods
 
     // Get methods
-    protected static int getFile(String refNumber){
+    protected int getFile(String refNumber){
         return -100;
     }
 

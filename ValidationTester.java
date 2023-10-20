@@ -32,7 +32,7 @@ public class ValidationTester {
     @DisplayName("Attempt to get a file to BO.")
     void getFileBOTest(){
         Business house = Business.createNewBO();
-        String output = house.getFile(refNum:null);
+        String output = house.getFile(refNumber:null);
         assertTrue(output == -1);
     }
 
