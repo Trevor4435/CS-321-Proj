@@ -2,26 +2,28 @@ public class Business{
 
 
     public static Business createNewBO(){
-
         return null;
-    }
-
-    protected int getFile( String refNum){
-       return -1; 
     }
 
     protected int validate(){
         return -1;
     }
-
-    protected int saveFile(){
-        return -1;
-    }
     
+    protected static int saveFile(){
+        return -100;
+    }
+
+    // Set methods
+
+    // Get methods
+    protected static int getFile(String refNumber){
+        return -100;
+    }
+
     protected String getAlienNumber(){
         return "number";
     }
-
+    
     protected String getFirstName(){
         return "supercalifragilisticexpialidocious";
     }
@@ -30,8 +32,8 @@ public class Business{
         return "";
     }
 
-    protected String getMiddleName(){
-        return "";
+    protected String[] getMiddleName(){
+        return null;
     }
 
     protected String getAddress(){
