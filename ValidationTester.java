@@ -46,10 +46,18 @@ public class ValidationTester {
     }
 
     @Test
-    @DisplayName("Attempt to get a null file to BO.")
+    @DisplayName("Attempt to get a file to BO.")
     void getFileBOTest2(){
         Business house = Business.createNewBO();
         int output = house.getFile("1");
+        assertTrue(output>0);
+    }
+
+    @Test
+    @DisplayName("Attempt to get a invalidly named file to BO.")
+    void getFileBOTest3(){
+        Business house = Business.createNewBO();
+        int output = house.getFile("meow");
         assertTrue(output>0);
     }
 
