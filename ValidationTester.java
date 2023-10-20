@@ -20,46 +20,73 @@ public class ValidationTester {
     }
     
     @Test
-    @DisplayName("Check if return value of save file is valid")
-    void saveFileBOTest1(){
-        Business house = Business.createNewBO();
-        int output = house.saveFile();
-        assertTrue(output>0);
-    }
-
-    @Test
-    @DisplayName("Attempt to save a file to BO.")
-    void saveFileBOTest2(){
-        Business house = Business.createNewBO();
-        int output = house.saveFile();
-        //assertNull(output);
-    }
-
-
-
-    @Test
     @DisplayName("Attempt to get a null file to BO.")
     void getFileBOTest1(){
         Business house = Business.createNewBO();
         int output = house.getFile(null);
-        assertTrue(output == -1);
+        assertTrue(output == 1);
     }
 
     @Test
-    @DisplayName("Attempt to get a file to BO.")
+    @DisplayName("Testing the status of valid input, without using getters, also file may not exist")
     void getFileBOTest2(){
         Business house = Business.createNewBO();
         int output = house.getFile("1");
-        assertTrue(output>0);
+        assertTrue(output==1);
+    }
+    
+    @Test
+    @DisplayName("Testing the status of invalid output, unknown if file exists")
+    void getFileBOTest3(){
+        Business house = Business.createNewBO();
+        int output = house.getFile("hihihi");
+        assertTrue(output==1);
     }
 
     @Test
-    @DisplayName("Attempt to get a invalidly named file to BO.")
-    void getFileBOTest3(){
+    @DisplayName("Testing the status of invalid output, should not work cuz file doesn't exist.")
+    void getFileBOTest4(){
         Business house = Business.createNewBO();
-        int output = house.getFile("meow");
-        assertTrue(output>0);
+        String refN = house.getRefNum();
+        int output = house.getFile(refN);
+        assertTrue(output==1);
     }
+    
+    
+    @Test
+    @DisplayName("")
+    void saveFileBOTest1(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");
+        BO.setAlienNumber("111111111");
+        BO.setLastName("Lee");
+        BO.setFirstName("Josh");
+        String[] midName = {"One", "Two"};
+        BO.setMiddleName(midName);
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("12/13/1970");
+        int result = BO.saveFile();
+
+        assertTrue(result == 1);
+    }
+
+    @Test
+    @DisplayName("Check if return value of save file is valid, there should be no files to save")
+    void saveFileBOTest2(){
+        Business house = Business.createNewBO();
+        int output = house.saveFile();
+        assertTrue(output == 1);
+    }
+
+     @Test
+    @DisplayName("")
+    void saveFileBOTest3(){
+        Business house = Business.createNewBO();
+        int output = house.saveFile();
+        assertTrue(output == 1);
+    }
+
+
 
 
     @Test
