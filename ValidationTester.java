@@ -32,7 +32,7 @@ public class ValidationTester {
     void saveFileBOTest2(){
         Business house = Business.createNewBO();
         int output = house.saveFile();
-        assertTrue(output>0);
+        assertNull(output);
     }
 
 
