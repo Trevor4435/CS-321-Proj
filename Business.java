@@ -1,9 +1,14 @@
 public class Business{
+    private String firstName;
 
 
-    protected static Business CreateNewBO(){
+    public static Business createNewBO(){
 
         return null;
+    }
+    
+    protected String getAlienNumber(){
+        return "number";
     }
 
     protected static int saveFile(){
@@ -13,7 +18,28 @@ public class Business{
     protected static int getFile(){
         return -100;
     }
+    
+    protected String getFirstName(){
+        return "supercalifragilisticexpialidocious";
+    }
+
+    protected String getLastName(){
+        return "";
+    }
+
+    protected String[] getMiddleName(){
+        return null;
+    }
+
+    protected String getAddress(){
+        return "space";
+    }
+
+    protected String getRefNum(){
+        return "-1";
+    }
 
     
 
+ 
 }
