@@ -322,7 +322,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -3);
     }
 
     @Test
@@ -338,7 +338,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -3);
     }
 
     @Test
@@ -354,7 +354,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -3);
     }
 
     @Test
@@ -370,7 +370,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -3);
     }
 
     @Test
@@ -386,7 +386,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -3);
     }
 
     @Test
@@ -402,7 +402,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -3);
     }
 
     // Check firstName
@@ -419,7 +419,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -3);
+        assertTrue(result == -4);
     }
 
     @Test
@@ -435,7 +435,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -3);
+        assertTrue(result == -4);
     }
 
     @Test
@@ -451,7 +451,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -3);
+        assertTrue(result == -4);
     }
 
     @Test
@@ -467,7 +467,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -3);
+        assertTrue(result == -4);
     }
 
     @Test
@@ -483,7 +483,7 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -3);
+        assertTrue(result == -4);
     }
 
     @Test
@@ -499,8 +499,297 @@ public class ValidationTester {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -2);
+        assertTrue(result == -4);
     }
 
+    // Check middle name
 
+    @Test
+    @DisplayName("Attempt to check for invalid middle name, case 1")  
+    void invalidMiddleName1(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");               
+        BO.setMiddleName(null);             //middleName = null value
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -5);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid middle name, case 2")  
+    void invalidMiddleName2(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"123"};               
+        BO.setMiddleName(middleN);             //middleName contain digits 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -5);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid middle name, case 3")  
+    void invalidMiddleName3(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"!@#$%^"};               
+        BO.setMiddleName(middleN);             //middleName contain only special characters 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -5);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid middle name, case 4")  
+    void invalidMiddleName4(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"1234@%^&"};               
+        BO.setMiddleName(middleN);             //middleName contain mixed special characters and digits 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -5);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid middle name, case 5")  
+    void invalidMiddleName5(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Aaaa124", "BBB@#$%"};               
+        BO.setMiddleName(middleN);             //middleName contain mixed letter, special characters, and digits 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -5);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid middle name, case 6")  
+    void invalidMiddleName6(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {""};               
+        BO.setMiddleName(middleN);             //Empty middle name means a person only has last name and first name 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -5);
+    }
+
+    // Check Address
+    @Test
+    @DisplayName("Attempt to check for invalid address, case 1")  
+    void invalidAddress1(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress(null);                        // Address = null value
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -6);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid address, case 2")  
+    void invalidAddress2(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X @Green Avenue, *Metalbridge, VA 9999");       // Address contain special characters
+        BO.setDOB("01/01/1999");
+        int result = BO.validate();
+        assertTrue(result == -6);
+    }
+
+    // Check DOB
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 1")  
+    void invalidDOB1(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB(null);                                //DOB is null value
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 2")  
+    void invalidDOB2(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("Mar 20 1999");                                //DOB input follow incorrect format
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 3")  
+    void invalidDOB3(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("aaaaa");                                //DOB contain letters
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 4")  
+    void invalidDOB4(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("");                                //DOB is empty or missing
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 5")  
+    void invalidDOB5(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("13/01/1999");                                // invalid month, must be in range [1,12]
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 6")  
+    void invalidDOB6(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("12/99/1999");                                // invalid date, must be in range [1,31]
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 7")  
+    void invalidDOB7(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("01/01/2500");                                // invalid year, must be in range [1900, 2050]
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 8")  
+    void invalidDOB8(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("01-01-1999");                                //Incorrect format for separators, must be "/"
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 9")  
+    void invalidDOB9(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("01/01/02");                                //Incorrect format for year, must be 4 digits YYYY
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
+
+    @Test
+    @DisplayName("Attempt to check for invalid DOB, case 10")  
+    void invalidDOB10(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");                 
+        BO.setAlienNumber("123456789");        
+        BO.setLastName("Hank");                         
+        BO.setFirstName("Tom");
+        String[] middleN = {"Alpha", "Beta"};               
+        BO.setMiddleName(middleN); 
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");       
+        BO.setDOB("1/1/1999");                     //Incorrect format for date and month, must be 2 digits DD or MM
+        int result = BO.validate();
+        assertTrue(result == -7);
+    }
 }
