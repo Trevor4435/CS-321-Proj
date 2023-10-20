@@ -14,6 +14,34 @@ public class Business{
     }
 
     // Set methods
+    protected void setAlienNumber(int newAlienNum){
+    }
+
+    protected void setRefNumber(int newRefNum){
+    }
+
+
+    protected void setFirstName(String firstName){
+    }
+
+    protected void setLastName(String lastName){
+    }
+
+    protected void setMiddleName(String[] middleName){
+    }
+
+    protected void setAddress(String address){
+    }
+
+    protected void setDate(String date){
+    }
+
+    protected void setMonth(String month){
+    }
+
+    protected void setYear(String year){
+    }
+    
 
     // Get methods
     protected static int getFile(String refNumber){
