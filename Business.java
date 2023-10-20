@@ -33,7 +33,7 @@ public class Business{
     protected void setAddress(String address){
     }
 
-    protected void setDOB(String date){
+    protected void setDOB(String dob){
     }
 
   
