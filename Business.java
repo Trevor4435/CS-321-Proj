@@ -67,5 +67,9 @@ public class Business{
         return "-1";
     }
 
+    protected String getDOB(){
+        return "-1";
+    }
+
  
 }

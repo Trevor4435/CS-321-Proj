@@ -19,40 +19,7 @@ public class ValidationTester {
         assertTrue(output.equals("John"));
     }
     
-    @Test
-    @DisplayName("Attempt to get a null file to BO.")
-    void getFileBOTest1(){
-        Business house = Business.createNewBO();
-        int output = house.getFile(null);
-        assertTrue(output == 1);
-    }
-
-    @Test
-    @DisplayName("Testing the status of valid input, without using getters, also file may not exist")
-    void getFileBOTest2(){
-        Business house = Business.createNewBO();
-        int output = house.getFile("1");
-        assertTrue(output==1);
-    }
-    
-    @Test
-    @DisplayName("Testing the status of invalid output, unknown if file exists")
-    void getFileBOTest3(){
-        Business house = Business.createNewBO();
-        int output = house.getFile("hihihi");
-        assertTrue(output==1);
-    }
-
-    @Test
-    @DisplayName("Testing the status of invalid output, should not work cuz file doesn't exist.")
-    void getFileBOTest4(){
-        Business house = Business.createNewBO();
-        String refN = house.getRefNum();
-        int output = house.getFile(refN);
-        assertTrue(output==1);
-    }
-    
-    
+      
     @Test
     @DisplayName("")
     void saveFileBOTest1(){
@@ -65,6 +32,7 @@ public class ValidationTester {
         BO.setMiddleName(midName);
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("12/13/1970");
+        
         int result = BO.saveFile();
 
         assertTrue(result == 1);
@@ -78,16 +46,89 @@ public class ValidationTester {
         assertTrue(output == 1);
     }
 
-     @Test
+    @Test
     @DisplayName("")
     void saveFileBOTest3(){
-        Business house = Business.createNewBO();
-        int output = house.saveFile();
-        assertTrue(output == 1);
+        
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");
+        BO.setAlienNumber("111111111");
+        BO.setLastName("Lee");
+        BO.setFirstName("Josh");
+        String[] midName = {"One", "Two"};
+        BO.setMiddleName(midName);
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("12/13/1970");
+        
+        BO.saveFile();
+
+        int result = BO.getFile(BO.getRefNum());
+
+        assertTrue("1" == BO.getRefNum());
+        assertTrue("111111111" == BO.getAlienNumber());
+        assertTrue("Lee" == BO.getLastName());
+        assertTrue("Josh" == BO.getFirstName());
+        assertTrue(midName == BO.getMiddleName());
+        assertTrue("123X Green Avenue, Metalbridge, VA 9999" == BO.getAddress());
+        assertTrue("12/13/1970" == BO.getDOB());
+
+        assertTrue(result == 1);
+
+       
     }
 
 
+    @Test
+    @DisplayName("")
+    void getFileBOTest1(){
+        Business BO = Business.createNewBO();
+        BO.setRefNumber("1");
+        BO.setAlienNumber("111111111");
+        BO.setLastName("Lee");
+        BO.setFirstName("Josh");
+        String[] midName = {"One", "Two"};
+        BO.setMiddleName(midName);
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("12/13/1970");
+        int result = BO.getFile(BO.getRefNum());
 
+
+        assertTrue(result == 1);
+    }
+
+    @Test
+    @DisplayName("Attempt to get a null file to BO.")
+    void getFileBOTest2(){
+        Business house = Business.createNewBO();
+        int output = house.getFile(null);
+        assertTrue(output == 1);
+    }
+
+    @Test
+    @DisplayName("Testing the status of valid input, without using getters, also file may not exist")
+    void getFileBOTest3(){
+        Business house = Business.createNewBO();
+        int output = house.getFile("1");
+        assertTrue(output==1);
+    }
+    
+    @Test
+    @DisplayName("Testing the status of invalid output, unknown if file exists")
+    void getFileBOTest4(){
+        Business house = Business.createNewBO();
+        int output = house.getFile("hihihi");
+        assertTrue(output==1);
+    }
+
+    @Test
+    @DisplayName("Testing the status of invalid output, should not work cuz file doesn't exist.")
+    void getFileBOTest5(){
+        Business house = Business.createNewBO();
+        String refN = house.getRefNum();
+        int output = house.getFile(refN);
+        assertTrue(output==1);
+    }
+    
 
     @Test
     @DisplayName("Invalid Reference number to WorkFlow")
