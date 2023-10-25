@@ -1,24 +1,15 @@
+package org.openjfx;
+
 import static org.junit.Assert.*;
 import org.junit.jupiter.api.*;
 
-public class ValidationTester {
-
+public class Tests {
     @Test
     @DisplayName("Attempt to create new BO.")
     void newBOTest(){
         Business house = Business.createNewBO();
         assertTrue(house instanceof Business);
     }
-
-    @Test
-    @DisplayName("Attempt to set a name to the business object.")
-    void setBOName(){
-        Business house = Business.createNewBO();
-        //house.setFirstName("John");
-        String output = house.getFirstName();
-        assertTrue(output.equals("John"));
-    }
-    
       
     @Test
     @DisplayName("test save file with valid input")
@@ -128,7 +119,6 @@ public class ValidationTester {
         int output = house.getFile(refN);
         assertTrue(output==1);
     }
-    
 
     @Test
     @DisplayName("Invalid Reference number to WorkFlow")

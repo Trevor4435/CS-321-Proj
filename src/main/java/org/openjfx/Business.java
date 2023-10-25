@@ -1,3 +1,5 @@
+package org.openjfx;
+
 public class Business{
 
 
@@ -36,8 +38,6 @@ public class Business{
     protected void setDOB(String dob){
     }
 
-  
-
     // Get methods
     protected int getFile(String refNumber){
         return -100;
@@ -70,6 +70,5 @@ public class Business{
     protected String getDOB(){
         return "-1";
     }
-
  
 }

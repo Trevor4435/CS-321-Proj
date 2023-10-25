@@ -1,3 +1,5 @@
+package org.openjfx;
+
 public class WorkFlow {
     
     protected static int addWorkFlow(String refNumber, String Target){
