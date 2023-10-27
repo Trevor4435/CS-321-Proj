@@ -2,6 +2,7 @@ package org.openjfx;
 
 import static org.junit.Assert.*;
 import org.junit.jupiter.api.*;
+import java.util.Arrays;
 
 public class Tests {
     @Test
@@ -34,7 +35,7 @@ public class Tests {
     void saveFileBOTest2(){
         Business house = Business.createNewBO();
         int output = house.saveFile();
-        assertTrue(output == 1);
+        assertTrue(output == -1);
     }
 
     @Test
@@ -42,49 +43,36 @@ public class Tests {
     void saveFileBOTest3(){
         
         Business BO = Business.createNewBO();
-        BO.setRefNumber("1");
-        BO.setAlienNumber("111111111");
-        BO.setLastName("Lee");
-        BO.setFirstName("Josh");
-        String[] midName = {"One", "Two"};
+        BO.setRefNumber("2");
+        BO.setAlienNumber("222222222");
+        BO.setLastName("Ree");
+        BO.setFirstName("Losh");
+        String[] midName = {"Three", "Fourth"};
         BO.setMiddleName(midName);
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("12/13/1970");
-        
-        BO.saveFile();
 
-        int result = BO.getFile(BO.getRefNum());
-
-        assertTrue("1" == BO.getRefNum());
-        assertTrue("111111111" == BO.getAlienNumber());
-        assertTrue("Lee" == BO.getLastName());
-        assertTrue("Josh" == BO.getFirstName());
-        assertTrue(midName == BO.getMiddleName());
-        assertTrue("123X Green Avenue, Metalbridge, VA 9999" == BO.getAddress());
-        assertTrue("12/13/1970" == BO.getDOB());
+        int result = BO.saveFile();;
 
         assertTrue(result == 1);
-
-       
     }
 
 
     @Test
-    @DisplayName("")
+    @DisplayName("Placeholder")
     void getFileBOTest1(){
         Business BO = Business.createNewBO();
-        BO.setRefNumber("1");
-        BO.setAlienNumber("111111111");
-        BO.setLastName("Lee");
-        BO.setFirstName("Josh");
         String[] midName = {"One", "Two"};
-        BO.setMiddleName(midName);
-        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
-        BO.setDOB("12/13/1970");
-        int result = BO.getFile(BO.getRefNum());
-
-
+        int result = BO.getFile("1");
         assertTrue(result == 1);
+
+        assertTrue("1".equals(BO.getRefNum()));
+        assertTrue("111111111".equals(BO.getAlienNumber()));
+        assertTrue("Lee".equals(BO.getLastName()));
+        assertTrue("Josh".equals(BO.getFirstName()));
+        assertTrue(Arrays.equals(midName, BO.getMiddleName()));
+        assertTrue("123X Green Avenue, Metalbridge, VA 9999".equals(BO.getAddress()));
+        assertTrue("12/13/1970".equals(BO.getDOB()));
     }
 
     @Test
@@ -92,15 +80,15 @@ public class Tests {
     void getFileBOTest2(){
         Business house = Business.createNewBO();
         int output = house.getFile(null);
-        assertTrue(output == 1);
+        assertTrue(output == -1);
     }
 
     @Test
     @DisplayName("Testing the status of valid input, without using getters,when file may not exist")
     void getFileBOTest3(){
         Business house = Business.createNewBO();
-        int output = house.getFile("1");
-        assertTrue(output==1);
+        int output = house.getFile("30");
+        assertTrue(output == -1);
     }
     
     @Test
@@ -108,16 +96,24 @@ public class Tests {
     void getFileBOTest4(){
         Business house = Business.createNewBO();
         int output = house.getFile("hihihi");
-        assertTrue(output==1);
+        assertTrue(output == -1);
     }
 
     @Test
     @DisplayName("Testing the status of invalid output, should not work cuz file doesn't exist.")
     void getFileBOTest5(){
-        Business house = Business.createNewBO();
-        String refN = house.getRefNum();
-        int output = house.getFile(refN);
-        assertTrue(output==1);
+        Business BO = Business.createNewBO();
+        String[] midName = {"Three", "Fourth"};
+        int result = BO.getFile("2");
+
+        assertTrue(result == 1);
+        assertTrue("2".equals(BO.getRefNum()));
+        assertTrue("222222222".equals(BO.getAlienNumber()));
+        assertTrue("Ree".equals(BO.getLastName()));
+        assertTrue("Losh".equals(BO.getFirstName()));
+        assertTrue(Arrays.equals(midName, BO.getMiddleName()));
+        assertTrue("123X Green Avenue, Metalbridge, VA 9999".equals(BO.getAddress()));
+        assertTrue("12/13/1970".equals(BO.getDOB()));
     }
 
     @Test
@@ -154,9 +150,6 @@ public class Tests {
         int status = WorkFlow.addWorkFlow(null, null);
         assertTrue(status == -1);
     }
-
-    
-
 
     @Test
     @DisplayName("Attempt to add to the Reviewer's work load.")

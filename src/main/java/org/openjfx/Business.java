@@ -2,9 +2,12 @@ package org.openjfx;
 
 public class Business{
 
+    private Business(){
+
+    }
 
     public static Business createNewBO(){
-        return null;
+        return new Business();
     }
 
     protected int validate(){
