@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -22,8 +23,10 @@ public class DataEntry {
         grid.setVgap(10);
         grid.setPadding(new Insets(25,25,25,25));
 
-        Label aliennumber = new Label("Alien Number: ");
-        grid.add(aliennumber, 0, 0);
+        Label aNumber = new Label("Alien Number: ");
+        grid.add(aNumber, 0, 0);
+        TextField alienNumber = new TextField();
+        grid.add(alienNumber, 1, 0);
 
         Button exit = new Button("Exit");
         grid.add(exit, 0, 5);

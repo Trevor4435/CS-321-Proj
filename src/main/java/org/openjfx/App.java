@@ -52,6 +52,7 @@ public class App extends Application {
         approve.setText("Approval");
         grid.add(approve, 0, 3);
 
+        // Set up the event handlerss for the buttons to call their respective classes
         dataEntry.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -59,6 +60,20 @@ public class App extends Application {
                 grid.getChildren().clear();
                 stage.hide();
                 data.showScreen();
+            }
+        });
+
+        review.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                
+            }
+        });
+
+        approve.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                
             }
         });
 
