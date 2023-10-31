@@ -1,8 +1,5 @@
 package org.openjfx;
 
-import java.util.Arrays;
-
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,9 +13,9 @@ import javafx.stage.Stage;
 
 public class DataEntry {
 
-    public void showScreen(){
+    private static int refNumber = 1;
 
-        int ref = App.refNumber;
+    public void showScreen(){
 
         // Take the stage declared in App.java and prepare a fresh scene to go into it before being showed again.
         Stage stage = App.permStage;
@@ -76,7 +73,7 @@ public class DataEntry {
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                Platform.exit();
+                stage.setScene(App.homeScene);
             }
         });
 
@@ -113,7 +110,7 @@ public class DataEntry {
 
 
                 BO.setAlienNumber(alienNumber.getText());
-                BO.setRefNumber(Integer.toString(ref));
+                BO.setRefNumber(Integer.toString(refNumber));
                 BO.setFirstName(firstName.getText());
                 BO.setLastName(lastName.getText());
 
@@ -132,6 +129,8 @@ public class DataEntry {
                         System.out.println("ERROR ERROR, SWITCH DEFAULT OCCURANCE");
                 }
                 
+                // TODO here we return to the home scene upon success and validation
+                stage.setScene(App.homeScene);
                 
             }
         });

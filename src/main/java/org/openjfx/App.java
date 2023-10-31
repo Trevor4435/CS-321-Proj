@@ -17,7 +17,8 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     protected static Stage permStage;
-    protected static int refNumber = 1;
+    protected static Scene homeScene;
+    protected static int done;
 
     @Override
     public void start(Stage stage) {
@@ -56,7 +57,7 @@ public class App extends Application {
         dataEntry.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                DataEntry data = new DataEntry();
+                DataEntry data = new DataEntry();                
                 stage.hide();
                 data.showScreen();
             }
@@ -83,8 +84,7 @@ public class App extends Application {
                 Platform.exit();
             }
         });
-
-
+        homeScene = scene;
         stage.setScene(scene);
         stage.show();
     }
