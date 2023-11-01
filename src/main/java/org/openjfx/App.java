@@ -66,7 +66,8 @@ public class App extends Application {
         review.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                
+                Review editData =  new Review();
+                editData.showScreen();
             }
         });
 
