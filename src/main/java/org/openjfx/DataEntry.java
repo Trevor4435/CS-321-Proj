@@ -92,18 +92,23 @@ public class DataEntry {
                 // Only the middle name is permitted to be empty, no other field may be empty
                 if(alienNumber.getText().isEmpty()){
                     error.setText("ERROR: Empty Alien Number!");
+                    return;
                 }
                 else if(firstName.getText().isEmpty()){
                     error.setText("ERROR: Empty First Name!");
+                    return;
                 }
                 else if(lastName.getText().isEmpty()){
                     error.setText("ERROR: Empty Last Name!");
+                    return;
                 }
                 else if(DOB.getText().isEmpty()){
                     error.setText("ERROR: Empty Date of Birth!");
+                    return;
                 }
                 else if(mailingAddress.getText().isEmpty()){
                     error.setText("ERROR: Empty Mailing Address!");
+                    return;
                 }
 
                 // TODO Add in parsing for the error returned by the BO validation metric.
