@@ -2,8 +2,16 @@ package org.openjfx;
 
 public class Business{
 
+    
+    public String alienNumber;
+    public String refNumber;
+    public String firstName;
+    public String lastName;
+    public String[] middleName;
+    public String address;
+    public String dob;
+    
     private Business(){
-
     }
 
     public static Business createNewBO(){
@@ -20,25 +28,32 @@ public class Business{
 
     // Set methods
     protected void setAlienNumber(String newAlienNum){
+        this.alienNumber = newAlienNum;
     }
 
     protected void setRefNumber(String newRefNum){
+        this.refNumber = newRefNum;
     }
 
 
-    protected void setFirstName(String firstName){
+    protected void setFirstName(String newFirstName){
+        this.firstName = newFirstName;
     }
 
-    protected void setLastName(String lastName){
+    protected void setLastName(String newLastName){
+        this.lastName = newLastName;
     }
 
-    protected void setMiddleName(String[] middleName){
+    protected void setMiddleName(String[] newMiddleName){
+        this.middleName = newMiddleName;
     }
 
-    protected void setAddress(String address){
+    protected void setAddress(String newAddress){
+        this.address = newAddress;
     }
 
-    protected void setDOB(String dob){
+    protected void setDOB(String newDob){
+        this.dob = newDob;
     }
 
     // Get methods
