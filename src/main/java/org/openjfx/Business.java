@@ -1,4 +1,4 @@
-package org.openjfx;
+mvn clean javafx:runpackage org.openjfx;
 
 public class Business{
 
