@@ -62,31 +62,31 @@ public class Business{
     }
 
     protected String getAlienNumber(){
-        return "number";
+        return this.alienNumber;
     }
     
     protected String getFirstName(){
-        return "supercalifragilisticexpialidocious";
+        return this.firstName;
     }
 
     protected String getLastName(){
-        return "";
+        return this.lastName;
     }
 
     protected String[] getMiddleName(){
-        return null;
+        return this.middleName;
     }
 
     protected String getAddress(){
-        return "space";
+        return this.address;
     }
 
     protected String getRefNum(){
-        return "-1";
+        return this.refNumber;
     }
 
     protected String getDOB(){
-        return "-1";
+        return this.dob;
     }
  
 }
