@@ -162,12 +162,21 @@ public class DataEntry {
                     // The rare occurance of us accepting a valid request and saving it. 
                     case 1:
                         BO.saveFile();
+
+                        // Now we need to add it to workflow
+                        int status = WorkFlow.addWorkFlow(String.valueOf(refNumber), "Reviewer");
+
+                        // If the workflow failed to be added, notify and "log"
+                        if(status != 1){
+                            error.setText("Internal Error! Please notify support with your reference number: " + refNumber);
+                        }
+
+                        
                         // Increment the stored reference number.
                         DataEntry.refNumber++;
+                        // Return to the home screen without detonating the JVM.
+                        stage.setScene(App.homeScene);
                 }
-
-                // Return to the home screen without detonating the JVM.
-                stage.setScene(App.homeScene);
             }
         });
 
