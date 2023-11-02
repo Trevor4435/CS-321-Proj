@@ -32,7 +32,7 @@ public class DataEntry {
         grid.add(alienNumber, 1, 0);
 
 
-        Label fName = new Label("First Name: ");
+        Label fName = new Label("First Name: \n (No special characters or numbers)");
         grid.add(fName, 0, 1);
         TextField firstName = new TextField();
         grid.add(firstName, 1, 1);
@@ -43,7 +43,7 @@ public class DataEntry {
         TextField middleNames = new TextField();
         grid.add(middleNames, 1, 2);
 
-        Label lName = new Label("Last Name: ");
+        Label lName = new Label("Last Name: \n (No special characters or numbers)");
         grid.add(lName, 0, 3);
         TextField lastName = new TextField();
         grid.add(lastName, 1, 3);
@@ -125,23 +125,54 @@ public class DataEntry {
                 BO.setAddress(mailingAddress.getText());
                 BO.setDOB(DOB.getText());
 
+                // Here we handle the possible errors and rejections from the business rules
                 switch (BO.validate()) {
+                    // All of these return statements simply escape the event handler to prevent further processing
+                    // Invalid Reference Number
                     case -1:
-                        
-                        break;
-                
+                        error.setText("Internal Error! Please Notify Support!");
+                        return;
+                    // Invalid Alien Number
+                    case -2:
+                        error.setText("Invalid Alien Number! Please Try Again.");
+                        return;
+                    // Invalid last name somehow
+                    case -3:
+                        error.setText("Invalid Last Name! Please Try Again.");
+                        return;
+                    // Invalid first name
+                    case -4:
+                        error.setText("Invalid First Name! Please Try Again.");
+                        return;
+                    // Invalid middle name
+                    case -5:
+                        error.setText("Invalid Middle Name! Please Try Again.");
+                        return;
+                    case -6:
+                        error.setText("Invalid Mailing Address! Please Try Again.");
+                        return;
+                    case -7:
+                        error.setText("Invalid Date Of Birth! Please Try Again.");
+                        return;
+                    // Any unexpected output from Validate is "logged" and the addition of the request is aborted
                     default:
-                        System.out.println("ERROR ERROR, SWITCH DEFAULT OCCURANCE");
+                        System.out.println("ERROR ERROR, Invalid Validate Result!");
+                        error.setText("Internal Error! \n Please Notify Support!");
+                        return;
+                    // The rare occurance of us accepting a valid request and saving it. 
+                    case 1:
+                        BO.saveFile();
+                        // Increment the stored reference number.
+                        DataEntry.refNumber++;
                 }
-                
-                // TODO here we return to the home scene upon success and validation
+
+                // Return to the home screen without detonating the JVM.
                 stage.setScene(App.homeScene);
-                
             }
         });
 
+        // Show our beautiful screen
         stage.setScene(scene);
         stage.show();
-
     }
 }
