@@ -169,6 +169,7 @@ public class DataEntry {
                         // If the workflow failed to be added, notify and "log"
                         if(status != 1){
                             error.setText("Internal Error! Please notify support with your reference number: " + refNumber);
+                            return;
                         }
 
                         
