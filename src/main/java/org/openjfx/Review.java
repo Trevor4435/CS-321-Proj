@@ -15,6 +15,16 @@ import javafx.stage.Stage;
 
 public class Review {
     private static int refNumber = 1;
+    public int i = -1;
+    private TextField alienNumber = new TextField();
+    private TextField firstName = new TextField();
+    private TextField middleNames = new TextField();
+    private TextField lastName = new TextField();
+    private TextField DOB = new TextField();
+    private TextField mailingAddress = new TextField();
+
+
+   
 
     public void showScreen(){
 
@@ -26,40 +36,41 @@ public class Review {
         Scene data = new Scene(grid);
         ArrayList<Business> boList = BOList();
     
-        int i  = -1;
+
 
         g.setHgap(10);
         g.setVgap(10);
         g.setPadding(new Insets(25,25,25,25));
         Label header = new Label("Reviewer Step");
+        g.add(header, 0,0);
         stage.setScene(start);
 
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25,25,25,25));
+        grid.setHgap(20);
+        grid.setVgap(20);
+        grid.setPadding(new Insets(40,40,40,40));
         
 
         Label aNumber = new Label("Alien Number: ");
-        TextField alienNumber;    
+       // TextField alienNumber = new TextField();    
     
         Label fName = new Label("First Name: ");
-        TextField firstName;
+       // TextField firstName = new TextField();
       
 
         Label mNames = new Label("Middle Name: \n(Seperate with a ',' or leave empty)");
-        TextField middleNames = new TextField(boList.get(i).getMiddleName().toString());
+       // TextField middleNames = new TextField();
         
 
         Label lName = new Label("Last Name: ");
-        TextField lastName = new TextField(boList.get(i).getLastName());
+       // TextField lastName = new TextField();
        
 
         Label bDay = new Label("Date of Birth: \n (Please enter in MM/DD/YYYY)");
-        TextField DOB = new TextField(boList.get(i).getDOB());
+       // TextField DOB = new TextField();
        
 
         Label mAddress = new Label("Mailing Address for Delivery: ");
-        TextField mailingAddress = new TextField(boList.get(i).getAddress());
+        //TextField mailingAddress = new TextField();
        
 
         Label error = new Label();
@@ -95,12 +106,13 @@ public class Review {
                     error.setText("There is nothing to edit on the screen, get the next item!");
                     return;
                 }
+                
                 alienNumber.setEditable(true);
                 firstName.setEditable(true);
                 middleNames.setEditable(true);
                 lastName.setEditable(true);
                 DOB.setEditable(true);
-                mailingAddress.setEditable(true):
+                mailingAddress.setEditable(true);
 
             }
         });
@@ -202,7 +214,7 @@ public class Review {
                 
                 boList.get(i).setAddress(mailingAddress.getText());
                 boList.get(i).setDOB(DOB.getText());
-                stage2.hide();
+                
 
                }
                if(i>= boList.size()){
@@ -216,8 +228,8 @@ public class Review {
             }
         });
 
-        stage.setScene(scene);
-        stage.show();
+        //stage.setScene(start);
+        //stage.show();
 
     }  
     public void setDefaultScreen(){
