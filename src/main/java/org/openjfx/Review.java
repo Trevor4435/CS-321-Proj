@@ -172,6 +172,7 @@ public class Review {
          edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
+                error.setText("");
                 if(i < 0 || i >= boList.size()){
                     
                     error.setText("There is nothing to edit on the screen, get the next item!");
