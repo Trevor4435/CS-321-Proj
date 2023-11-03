@@ -24,6 +24,9 @@ public class Review {
     private TextField mailingAddress = new TextField();
     
 
+    
+
+
 
    
 
@@ -32,9 +35,12 @@ public class Review {
         
         Stage stage = App.permStage;
         GridPane grid = new GridPane();
-       // GridPane g = new GridPane();
-        //Scene start = new Scene(g);
+ 
         Scene data = new Scene(grid);
+        
+        GridPane sGrid = new GridPane();
+        Scene start = new Scene(sGrid);
+
         ArrayList<Business> boList = BOList();
     
         
@@ -42,15 +48,17 @@ public class Review {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25,25,25,25));
+
+        sGrid.setHgap(10);
+        sGrid.setVgap(10);
+        sGrid.setPadding(new Insets(25,25,25,25));
+
         Label header = new Label("Reviewer Step");
         grid.add(header, 0,0);
-       
+        sGrid.add(header, 0,0);
+        
+        stage.setScene(start);  //sets up default reviewer screen
 
-        /*grid.setHgap(20);
-        grid.setVgap(20);
-        grid.setPadding(new Insets(40,40,40,40));
-         stage.setScene(data);
-        stage.show();*/
              
         Label aNumber = new Label("Alien Number: ");
        // TextField alienNumber = new TextField();    
@@ -74,29 +82,86 @@ public class Review {
         Label mAddress = new Label("Mailing Address for Delivery: ");
         //TextField mailingAddress = new TextField();
        
-
+        
         Label error = new Label();
-        grid.add(error, 0, 6);
+        grid.add(error, 0, 8);
         error.setTextFill(Color.RED);
     
-
-        Button submit = new Button("Submit");
+        //create and add buttons
+        Button submit = new Button("SAVE");
         grid.add(submit, 2, 9);
 
-        Button exit = new Button("Exit");
-        grid.add(exit, 0, 9);
+        
+        Button begin = new Button("START");
+        sGrid.add(begin, 2, 9);
+
+        Button exit1 = new Button("Exit");
+        sGrid.add(exit1, 0, 9);
+        
+        Button exit2 = new Button("EXIT");
+        grid.add(exit2, 0, 9);
+        
 
         Button next = new Button("Next");
         grid.add(next,1,9);
-
+        
+        
         Button edit = new Button("Edit");
-        grid.add(next,3,9);
+        grid.add(edit,3,9);
+        
+        
+        //add labels and textfeilds
+        grid.add(aNumber, 0, 0);
+        alienNumber.setEditable(false);
+        grid.add(alienNumber, 1, 0);    
+       
+           
+        grid.add(fName, 0, 1);
+        firstName.setEditable(false);
+        grid.add(firstName, 1, 1);
+
+        grid.add(mNames, 0, 2);
+        middleNames.setEditable(false);
+        grid.add(middleNames, 1, 2);
+
+        grid.add(lName, 0, 3);
+        lastName.setEditable(false);
+        grid.add(lastName, 1, 3);
+
+        grid.add(bDay, 0, 4);
+        DOB.setEditable(false);
+        grid.add(DOB, 1, 4);
+
+        grid.add(mAddress, 0, 5);
+        mailingAddress.setEditable(false);
+        grid.add(mailingAddress, 1, 5);
+
+
+
+
+
+
+
+
     
         
-        
+        begin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                stage.setScene(data);
+            }
+        }); 
 
 
-        exit.setOnAction(new EventHandler<ActionEvent>() {
+        exit1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                stage.setScene(App.homeScene);
+                
+            }
+        });
+
+        exit2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
                 stage.setScene(App.homeScene);
@@ -142,36 +207,35 @@ public class Review {
            
 
 
-            grid.add(aNumber, 0, 0);
-            alienNumber = new TextField(boList.get(i).getAlienNumber());
+            
+            alienNumber.setText(boList.get(i).getAlienNumber());
             alienNumber.setEditable(false);
-            grid.add(alienNumber, 1, 0);    
+                
     
            
-            grid.add(fName, 0, 1);
-            firstName = new TextField(boList.get(i).getFirstName());
+            
+            firstName.setText(boList.get(i).getFirstName());
             firstName.setEditable(false);
-            grid.add(firstName, 1, 1);
+            
 
-            grid.add(mNames, 0, 2);
-            middleNames = new TextField(boList.get(i).getMiddleName().toString());
+            
+            middleNames.setText(printMiddleName(boList.get(i).getMiddleName()));
             middleNames.setEditable(false);
-            grid.add(middleNames, 1, 2);
+           
 
-            grid.add(lName, 0, 3);
-            lastName = new TextField(boList.get(i).getLastName());
+            
+            lastName.setText(boList.get(i).getLastName());
             lastName.setEditable(false);
-            grid.add(lastName, 1, 3);
+            
 
-            grid.add(bDay, 0, 4);
-            DOB = new TextField(boList.get(i).getDOB());
+            
+            DOB.setText(boList.get(i).getDOB());
             DOB.setEditable(false);
-            grid.add(DOB, 1, 4);
-
-            grid.add(mAddress, 0, 5);
-            mailingAddress = new TextField(boList.get(i).getAddress());
+            
+           
+            mailingAddress.setText(boList.get(i).getAddress());
             mailingAddress.setEditable(false);
-            grid.add(mailingAddress, 1, 5);
+            
             
             stage.setScene(data);
                     return;
@@ -186,30 +250,9 @@ public class Review {
             @Override
             public void handle(ActionEvent event){
                 
-                error.setText("");
-
-               
-                if(alienNumber.getText().isEmpty()){
-                    error.setText("ERROR: Empty Alien Number!");
-                    return;
+                if(i<0){
+                    error.setText("Get next form to review by clicking Next button!");
                 }
-                else if(firstName.getText().isEmpty()){
-                    error.setText("ERROR: Empty First Name!");
-                    return;
-                }
-                else if(lastName.getText().isEmpty()){
-                    error.setText("ERROR: Empty Last Name!");
-                    return;
-                }
-                else if(DOB.getText().isEmpty()){
-                    error.setText("ERROR: Empty Date of Birth!");
-                    return;
-                }
-                else if(mailingAddress.getText().isEmpty()){
-                    error.setText("ERROR: Empty Mailing Address!");
-                    return;
-                }
-
                 
 
                if(i >= 0 && i < boList.size()){
@@ -223,17 +266,22 @@ public class Review {
                 
                 boList.get(i).setAddress(mailingAddress.getText());
                 boList.get(i).setDOB(DOB.getText());
+
+               
                 
 
                }
-
-
+            
+            if(i == 1){
+            printList(boList);
+            }
+               
 
                 //reset values for next object in workflow
-                grid.getChildren().remove(aNumber);
+               /*grid.getChildren().remove(aNumber);
                 grid.getChildren().remove(alienNumber);
                 
-                grid.getChildren().remove(fName);
+                grid .getChildren().remove(fName);
                 grid.getChildren().remove(firstName);
                 
                 grid.getChildren().remove(mNames);
@@ -247,14 +295,18 @@ public class Review {
 
                 grid.getChildren().remove(mAddress);
                 grid.getChildren().remove(mailingAddress);
-
+*/
 
                if(i>= boList.size()){
                 stage.setScene(App.homeScene);
                
                }
-               if(i<0){
+
+               else if(i<0){
                 error.setText("ERROR: No form is opened for review!");
+               }
+               else{
+                stage.setScene(data);
                }
                 
             }
@@ -280,18 +332,41 @@ public class Review {
         b1.setDOB("12/13/1970");
 
         Business b2 = Business.createNewBO();
-        b2.setRefNumber("2");
-        b2.setAlienNumber("111111111");
-        b2.setLastName("Lee");
-        b2.setFirstName("Josh");
+        b2.setRefNumber("3");
+        b2.setAlienNumber("222222222");
+        b2.setLastName("Bob");
+        b2.setFirstName("Jones");
         String[] midName2 = {"Three", "Four"};
         b2.setMiddleName(midName2);
-        b2.setAddress("123X Green Avenue, Metalbridge, VA 9999");
-        b2.setDOB("12/13/1970");
+        b2.setAddress("456X Red Avenue, Woodbridge, VA 8888");
+        b2.setDOB("10/02/1988");
         ArrayList<Business> boList = new ArrayList<Business>();
         boList.add(b1);
         boList.add(b2);
 
         return boList;
+    }
+
+    public void printList(ArrayList<Business> obj){
+    
+        for(int i = 0; i< obj.size(); i++){
+            System.out.println("index: " + i);
+            System.out.println( " Alien Num: " +  obj.get(i).getAlienNumber());
+            System.out.println(" First Name: " + obj.get(i).getFirstName());
+            System.out.println(" Last Name: " + obj.get(i).getLastName());
+            System.out.println(" Middle Name: " + printMiddleName(obj.get(i).getMiddleName()));
+            System.out.println(" Address: " + obj.get(i).getAddress());
+            System.out.println(" DOB: " + obj.get(i).getDOB());
+        }
+
+    }
+    public String printMiddleName(String [] a){
+        String s = "";
+        for( int i = 0; i< a.length; i++){
+            s+=a[i] + " ";
+
+
+        }
+        return s;
     }
 }
