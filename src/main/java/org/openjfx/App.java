@@ -74,7 +74,8 @@ public class App extends Application {
         approve.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                
+                Approval approve = new Approval();
+                approve.showScreen();
             }
         });
 
