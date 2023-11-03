@@ -22,34 +22,36 @@ public class Review {
     private TextField lastName = new TextField();
     private TextField DOB = new TextField();
     private TextField mailingAddress = new TextField();
+    
 
 
    
 
     public void showScreen(){
 
-        // Take the stage declared in App.java and prepare a fresh scene to go into it before being showed again.
+        
         Stage stage = App.permStage;
         GridPane grid = new GridPane();
-        GridPane g = new GridPane();
-        Scene start = new Scene(g);
+       // GridPane g = new GridPane();
+        //Scene start = new Scene(g);
         Scene data = new Scene(grid);
         ArrayList<Business> boList = BOList();
     
-
-
-        g.setHgap(10);
-        g.setVgap(10);
-        g.setPadding(new Insets(25,25,25,25));
-        Label header = new Label("Reviewer Step");
-        g.add(header, 0,0);
-        stage.setScene(start);
-
-        grid.setHgap(20);
-        grid.setVgap(20);
-        grid.setPadding(new Insets(40,40,40,40));
         
 
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25,25,25,25));
+        Label header = new Label("Reviewer Step");
+        grid.add(header, 0,0);
+       
+
+        /*grid.setHgap(20);
+        grid.setVgap(20);
+        grid.setPadding(new Insets(40,40,40,40));
+         stage.setScene(data);
+        stage.show();*/
+             
         Label aNumber = new Label("Alien Number: ");
        // TextField alienNumber = new TextField();    
     
@@ -90,6 +92,9 @@ public class Review {
         Button edit = new Button("Edit");
         grid.add(next,3,9);
     
+        
+        
+
 
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -98,6 +103,7 @@ public class Review {
             }
         });
         
+
          edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -133,6 +139,9 @@ public class Review {
                 return;
             }
              
+           
+
+
             grid.add(aNumber, 0, 0);
             alienNumber = new TextField(boList.get(i).getAlienNumber());
             alienNumber.setEditable(false);
@@ -176,10 +185,10 @@ public class Review {
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                // Reset the error text each time submit is pressed
+                
                 error.setText("");
 
-                // Only the middle name is permitted to be empty, no other field may be empty
+               
                 if(alienNumber.getText().isEmpty()){
                     error.setText("ERROR: Empty Alien Number!");
                     return;
@@ -201,7 +210,7 @@ public class Review {
                     return;
                 }
 
-                // TODO Add in parsing for the error returned by the BO validation metric.
+                
 
                if(i >= 0 && i < boList.size()){
                 boList.get(i).setAlienNumber(alienNumber.getText());
@@ -217,6 +226,29 @@ public class Review {
                 
 
                }
+
+
+
+                //reset values for next object in workflow
+                grid.getChildren().remove(aNumber);
+                grid.getChildren().remove(alienNumber);
+                
+                grid.getChildren().remove(fName);
+                grid.getChildren().remove(firstName);
+                
+                grid.getChildren().remove(mNames);
+                grid.getChildren().remove(middleNames);
+                
+                grid.getChildren().remove(lName);
+                grid.getChildren().remove(lastName);
+
+                grid.getChildren().remove(bDay);
+                grid.getChildren().remove(DOB);
+
+                grid.getChildren().remove(mAddress);
+                grid.getChildren().remove(mailingAddress);
+
+
                if(i>= boList.size()){
                 stage.setScene(App.homeScene);
                
