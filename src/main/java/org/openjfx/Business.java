@@ -52,7 +52,7 @@ public class Business{
             return -1;
         }
 
-        if(address.length() == 0){
+        if(address.length() == 0 || !checkAddress()){
             return -1;
         }
         return 1;
@@ -93,6 +93,18 @@ public class Business{
 
 
 
+
+        return true;
+    }
+
+
+    protected boolean checkAddress(){
+
+        for( int i = 0; i< address.length() ; i++){
+            if(!Character.isLetterOrDigit(address.charAt(i)) && (address.charAt(i) != ' ')  ){
+                return false;
+            }
+        }
 
         return true;
     }
