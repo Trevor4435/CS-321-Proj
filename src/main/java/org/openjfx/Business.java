@@ -22,7 +22,7 @@ public class Business{
         return new Business();
     }
 
-    protected int validate(){ //Nicole?
+    protected int validate(){
         
         if(alienNumber == null || refNumber == null || firstName == null || lastName == null || middleName == null || address == null || dob == null){
                 return -1;
@@ -32,7 +32,7 @@ public class Business{
             return -1;
         }
 
-         if(!isNumeric(refNumber) || alienNumber.length() != 0){
+         if(!isNumeric(refNumber) || refNumber.length() != 0){
             return -1;
         }
 
@@ -43,10 +43,60 @@ public class Business{
         if(!isAlpha(lastName) || lastName.length() == 0){
             return -1;
         }
-    
-        return 100;
+
+        if(!checkMiddleName()){
+            return -1;
+        }
+        
+        if(!checkDOB() || dob.length() == 0){
+            return -1;
+        }
+
+        if(address.length() == 0){
+            return -1;
+        }
+        return 1;
     }
     
+    //is date valid?
+    protected boolean checkDOB(){
+
+        if(dob.length() != 10){
+            return false;
+        }
+        
+        // 01/01/2000
+        String month = dob.substring(0,2);
+        String day = dob.substring(3,5);
+        String year = dob.substring(6);
+        
+        if(dob.charAt(2) != '/' || dob.charAt(5) !='/'){
+            return false;
+        }
+        if(!isNumeric(month) || !isNumeric(day) || !isNumeric(year) ){
+            return false;
+        }
+
+        Integer m = Integer.parseInt(month);
+        Integer d = Integer.parseInt(day);
+        Integer y = Integer.parseInt(year);
+        
+        //are dates in range?
+        if((m < 1 || m > 12) || (d < 1 || d > 31) || (y < 0 || y > 2023) ){
+            
+            return false;
+        }
+
+
+        //I should proably add more specific cases like 30 or 31, leap year
+
+
+
+
+
+        return true;
+    }
+
     protected boolean isNumeric(String input) {
         if (input == null) {
             return false;
@@ -59,13 +109,20 @@ public class Business{
         return true;
     }
     
-    protected boolean
-for( int i = 0; i< this.middleName.size(); i++){
-if(!isAlpha(this.middleName[i]));
+   
 
- return ;
-}
 
+    protected boolean checkMiddleName(){
+        for( int i = 0; i< this.middleName.length; i++){
+        
+        if(!isAlpha(this.middleName[i])){
+            return false;
+        }
+
+    }
+    
+        return true;
+    }
 
     protected boolean isAlpha(String input){
 
