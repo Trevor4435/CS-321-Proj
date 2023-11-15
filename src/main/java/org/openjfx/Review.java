@@ -197,8 +197,7 @@ public class Review {
         next.setOnAction(new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event){
-            //error.setText("button not implemented yet!");
-             // Declare the label and field for an alien number to be entered.
+            
             i++;
             if(i >= boList.size()){
                 stage.setScene(App.homeScene);
@@ -239,7 +238,7 @@ public class Review {
             
             
             stage.setScene(data);
-                    return;
+                    
         }
 
         });
@@ -317,9 +316,7 @@ public class Review {
         //stage.show();
 
     }  
-    public void setDefaultScreen(){
-
-    }  
+    
     public ArrayList<Business> BOList(){
 
          Business b1 = Business.createNewBO();

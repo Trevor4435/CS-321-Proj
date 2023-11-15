@@ -23,9 +23,62 @@ public class Business{
     }
 
     protected int validate(){ //Nicole?
+        
+        if(alienNumber == null || refNumber == null || firstName == null || lastName == null || middleName == null || address == null || dob == null){
+                return -1;
+        }
+       
+        if(!isNumeric(alienNumber) || alienNumber.length() != 9){
+            return -1;
+        }
+
+         if(!isNumeric(refNumber) || alienNumber.length() != 0){
+            return -1;
+        }
+
+         if(!isAlpha(firstName) || firstName.length() == 0){
+            return -1;
+        }
+    
+        if(!isAlpha(lastName) || lastName.length() == 0){
+            return -1;
+        }
+    
         return 100;
     }
     
+    protected boolean isNumeric(String input) {
+        if (input == null) {
+            return false;
+        }
+        try {
+            Integer i = Integer.parseInt(input);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+    
+    protected boolean
+for( int i = 0; i< this.middleName.size(); i++){
+if(!isAlpha(this.middleName[i]));
+
+ return ;
+}
+
+
+    protected boolean isAlpha(String input){
+
+        for(int i =0; i< input.length(); i++){
+            if(!(Character.isAlphabetic(input.charAt(i)))){
+            
+                return false;
+            }
+        }
+        return true;
+    }
+    
+
     // If we ge tto the save step, we assume that everyone has run the validation prior. Meaning that we should only get valid data.
     protected int saveFile(){
         // If we are saving to a file we have already opened
