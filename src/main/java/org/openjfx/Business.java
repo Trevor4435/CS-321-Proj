@@ -85,6 +85,11 @@ public class Business{
     protected int getFile(String refNumber){
         Boolean found = false;
 
+        // Just a quick null check
+        if(refNumber == null){
+            return -1;
+        }
+
         // Iterate over the entire databse looking for the desired file
         for(Business data : Database){
             // Just for safety, we shouldnt need this empty check.
