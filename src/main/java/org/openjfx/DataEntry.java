@@ -111,9 +111,6 @@ public class DataEntry {
                     return;
                 }
 
-                // TODO Add in parsing for the error returned by the BO validation metric.
-
-
                 BO.setAlienNumber(alienNumber.getText());
                 BO.setRefNumber(Integer.toString(refNumber));
                 BO.setFirstName(firstName.getText());
@@ -169,9 +166,9 @@ public class DataEntry {
                         // If the workflow failed to be added, notify and "log"
                         if(status != 1){
                             error.setText("Internal Error! Please notify support with your reference number: " + refNumber);
+                            DataEntry.refNumber++;
                             return;
                         }
-
                         
                         // Increment the stored reference number.
                         DataEntry.refNumber++;

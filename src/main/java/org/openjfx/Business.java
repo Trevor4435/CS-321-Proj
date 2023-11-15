@@ -1,15 +1,19 @@
 package org.openjfx;
 
+import java.util.ArrayList;
+
 public class Business{
 
-    
-    public String alienNumber;
-    public String refNumber;
-    public String firstName;
-    public String lastName;
-    public String[] middleName;
-    public String address;
-    public String dob;
+    private static ArrayList<Business> Database = new ArrayList<Business>();
+    private Business openFile;
+
+    private String alienNumber;
+    private String refNumber;
+    private String firstName;
+    private String lastName;
+    private String[] middleName;
+    private String address;
+    private String dob;
     
     private Business(){
     }
@@ -22,8 +26,29 @@ public class Business{
         return 100;
     }
     
+    // If we ge tto the save step, we assume that everyone has run the validation prior. Meaning that we should only get valid data.
     protected int saveFile(){
-        return -100;
+        // If we are saving to a file we have already opened
+        if(openFile != null){
+            openFile.setRefNumber(this.refNumber);
+            openFile.setAlienNumber(this.alienNumber);
+            openFile.setFirstName(this.firstName);
+            openFile.setLastName(this.lastName);
+            openFile.setMiddleName(this.middleName);
+            openFile.setAddress(this.address);
+            openFile.setDOB(this.dob);
+            return 1;
+        }
+        else{
+
+            // Catch if at least one value has not been prooperly set for some reason.
+            if(alienNumber == null || refNumber == null || firstName == null || lastName == null || middleName == null || address == null || dob == null){
+                return -1;
+            }
+
+            Database.add(this);
+            return 1;
+        }
     }
 
     // Set methods
@@ -58,7 +83,40 @@ public class Business{
 
     // Get methods
     protected int getFile(String refNumber){
-        return -100;
+        Boolean found = false;
+
+        // Just a quick null check
+        if(refNumber == null){
+            return -1;
+        }
+
+        // Iterate over the entire databse looking for the desired file
+        for(Business data : Database){
+            // Just for safety, we shouldnt need this empty check.
+            if(Database.isEmpty()){
+                return -1;
+            }
+            // If we find the desired file then make its data ours
+            if(data.getRefNum().equals(refNumber)){
+                found = true;
+                openFile = data;
+                this.alienNumber = data.getAlienNumber();
+                this.refNumber = data.getRefNum();
+                this.firstName = data.getFirstName();
+                this.lastName = data.getLastName();
+                this.middleName = data.getMiddleName();
+                this.address = data.getAddress();
+                this.dob = data.getDOB();
+            }
+        }
+
+        // If we did find the file, return a success. If we didnt, return a failure.
+        if(found){
+            return 1;
+        }
+        else{
+            return -1;
+        }
     }
 
     protected String getAlienNumber(){
