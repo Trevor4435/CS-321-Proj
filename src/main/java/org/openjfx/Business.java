@@ -18,7 +18,7 @@ public class Business{
         return new Business();
     }
 
-    protected int validate(){
+    protected int validate(){ //Nicole?
         return 100;
     }
     

@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 
 public class Approval {
-    public final boolean DEBUG = false; 
+    public final boolean DEBUG = true; 
 
     public void showScreen(){
 
