@@ -7,7 +7,7 @@ public class Business{
     private static ArrayList<Business> Database = new ArrayList<Business>();
     private Business openFile;
 
-    private String alienNumber;
+    private String alienNumber; 
     private String refNumber;
     private String firstName;
     private String lastName;
@@ -24,48 +24,51 @@ public class Business{
 
     protected int validate(){
         
-        if(alienNumber == null || refNumber == null || firstName == null || lastName == null || middleName == null || address == null || dob == null){
-                return -1;
-        }
-       
-        if(!isNumeric(alienNumber) || alienNumber.length() != 9){
-            return -1;
-        }
 
-         if(!isNumeric(refNumber) || refNumber.length() != 0){
-            return -1;
-        }
-
-         if(!isAlpha(firstName) || firstName.length() == 0){
-            return -1;
-        }
-    
-        if(!isAlpha(lastName) || lastName.length() == 0){
-            return -1;
-        }
-
-        if(!checkMiddleName()){
+         if(  refNumber == null || !isNumeric(refNumber) || refNumber.length() != 0){
             return -1;
         }
         
-        if(!checkDOB() || dob.length() == 0){
-            return -1;
+        if(alienNumber == null || !isNumeric(alienNumber) || alienNumber.length() != 9){
+            return -2;
+        }
+        
+        if(  lastName == null || !isAlpha(lastName) || lastName.length() == 0){
+            return -3;
         }
 
-        if(address.length() == 0 || !checkAddress()){
-            return -1;
+
+         if(  firstName == null || !isAlpha(firstName) || firstName.length() == 0){
+            return -4;
         }
+    
+       
+
+        if( middleName == null || !checkMiddleName() ){  //can middlename be empty?
+            return -5;
+        }
+        
+
+        if( address == null || address.length() == 0 || !checkAddress()){
+            return -6;
+        }
+
+        if( dob == null || !checkDOB() || dob.length() == 0){
+            return -7;
+        }
+
+     
         return 1;
     }
     
     //is date valid?
-    protected boolean checkDOB(){
+    private boolean checkDOB(){
 
         if(dob.length() != 10){
             return false;
         }
         
-        // 01/01/2000
+       
         String month = dob.substring(0,2);
         String day = dob.substring(3,5);
         String year = dob.substring(6);
@@ -82,26 +85,24 @@ public class Business{
         Integer y = Integer.parseInt(year);
         
         //are dates in range?
-        if((m < 1 || m > 12) || (d < 1 || d > 31) || (y < 0 || y > 2023) ){
+        if((m < 1 || m > 12) || (y < 0 || y > 2023) ){
             
             return false;
         }
-
-
-        //I should proably add more specific cases like 30 or 31, leap year
-
-
-
-
+        
+        int [] mon = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        if(d < 1 || d > mon[m-1]){
+            return false;
+        }
 
         return true;
     }
 
 
-    protected boolean checkAddress(){
+    private boolean checkAddress(){
 
         for( int i = 0; i< address.length() ; i++){
-            if(!Character.isLetterOrDigit(address.charAt(i)) && (address.charAt(i) != ' ')  ){
+            if(!Character.isLetterOrDigit(address.charAt(i)) && (address.charAt(i) != ' ') && (address.charAt(i) != ',')  ){
                 return false;
             }
         }
@@ -109,7 +110,7 @@ public class Business{
         return true;
     }
 
-    protected boolean isNumeric(String input) {
+    private boolean isNumeric(String input) {
         if (input == null) {
             return false;
         }
@@ -124,7 +125,7 @@ public class Business{
    
 
 
-    protected boolean checkMiddleName(){
+    private boolean checkMiddleName(){
         for( int i = 0; i< this.middleName.length; i++){
         
         if(!isAlpha(this.middleName[i])){
@@ -136,7 +137,7 @@ public class Business{
         return true;
     }
 
-    protected boolean isAlpha(String input){
+    private boolean isAlpha(String input){
 
         for(int i =0; i< input.length(); i++){
             if(!(Character.isAlphabetic(input.charAt(i)))){
