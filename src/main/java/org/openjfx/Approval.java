@@ -123,6 +123,7 @@ public class Approval {
         rejectB.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
+                        WorkFlow.addWorkFlow(curRef, "Reviewer");
         		stage.setScene(rejectScene);
         	}
         });
