@@ -8,7 +8,7 @@ public class WorkFlow {
     private static Queue<String> approvalQ = new LinkedList<>();
 
     protected static int addWorkFlow(String refNumber, String target){    
-        
+        /*Check if NULL values passing  */
         if ((refNumber == null) || (target == null)){
             //System.out.println("Passing NULL values");      // For DB
             return -1;
@@ -24,6 +24,7 @@ public class WorkFlow {
             //System.out.println(approvalQ);      // For DB
 
         }
+        /*Either passing invalid ref or target string */
         else{
             System.out.println("Error! Target invalid");
             return -1;          
@@ -38,6 +39,7 @@ public class WorkFlow {
         else if ((employee.equals("Approver")) && (!approvalQ.isEmpty())) {
             return approvalQ.remove();
         }
+        /*Access empty queue */
         else{
             return "No item to continue, take a break!";          
         }

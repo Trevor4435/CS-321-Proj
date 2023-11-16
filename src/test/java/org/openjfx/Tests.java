@@ -161,6 +161,7 @@ public class Tests {
     @Test
     @DisplayName("Attempt to read back that work.")
     void pullReviewWork(){
+        WorkFlow.addWorkFlow("123", "Reviewer");
         String output = WorkFlow.getNextRef("Reviewer");
         assertTrue(output.equals("123"));
     }
@@ -169,7 +170,7 @@ public class Tests {
     @DisplayName("Attempt to read an empty Reviewer list.")
     void pullEmptyReview(){
         String output = WorkFlow.getNextRef("Reviewer");
-        assertTrue(output.equals("Coffee Time"));
+        assertTrue(output.equals("No item to continue, take a break!"));
     }
 
     @Test
@@ -182,6 +183,7 @@ public class Tests {
     @Test
     @DisplayName("Attempt to read back that work")
     void pullApproverWork(){
+        WorkFlow.addWorkFlow("125", "Approver");
         String output = WorkFlow.getNextRef("Approver");
         assertTrue(output.equals("125"));
     }
@@ -190,7 +192,7 @@ public class Tests {
     @DisplayName("Attempt to read an empty Approver list.")
     void pullEmptyApprover(){
         String output = WorkFlow.getNextRef("Approver");
-        assertTrue(output.equals("Coffee Time"));
+        assertTrue(output.equals("No item to continue, take a break!"));
     }
 
 /*Testing validate() */
