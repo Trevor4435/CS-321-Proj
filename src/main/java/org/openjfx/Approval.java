@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 
 public class Approval {
-    public final boolean DEBUG = true; 
+    public final boolean DEBUG = false; 
 
     public void showScreen(){
 
@@ -54,7 +54,13 @@ public class Approval {
         Scene errorScene = new Scene(vbox3, 400, 400);
 
 //Options decide
+        // Business object
         
+        Business curBO = Business.createNewBO();   
+        String curRef = WorkFlow.getNextRef("Approver");
+        curBO.getFile(curRef);          // Get data from database
+        
+
 
         Scene approvalOptionsScene = new Scene(grid, 400, 400);
 
@@ -64,14 +70,14 @@ public class Approval {
 
 
         // Display current data working if have
-        Label greeting = new Label ("Working on Reference #");
+        Label greeting = new Label ("Working on Reference #" + curBO.getRefNum());
         //greeting.setAlignment(Pos.CENTER);
 
-        Label alienN = new Label("Alien number: None");
-        Label firstN = new Label("First name: None");
-        Label lastN = new Label("Last name: None");
-        Label dob = new Label("Date of birth: None");
-        Label mail = new Label("Mailing: None");
+        Label alienN = new Label("Alien number: " + curBO.getAlienNumber());
+        Label firstN = new Label("First name: " + curBO.getFirstName());
+        Label lastN = new Label("Last name: " + curBO.getLastName());
+        Label dob = new Label("Date of birth: " + curBO.getDOB());
+        Label mail = new Label("Mailing: " + curBO.getAddress());
 
         Label[] arr = {greeting, alienN, firstN, lastN, dob, mail};
 
