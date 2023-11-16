@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Review {
     
-
+    
     private TextField alienNumber = new TextField();
     private TextField firstName = new TextField();
     private TextField middleNames = new TextField();
@@ -24,14 +24,8 @@ public class Review {
     private TextField mailingAddress = new TextField();
     private  boolean canEdit = false;
     private boolean nextInAction = false;
-    //private boolean saved = false;
     
-
     
-
-
-
-   
 
     public void showScreen(){
 
@@ -44,7 +38,7 @@ public class Review {
         GridPane sGrid = new GridPane();
         Scene start = new Scene(sGrid);
 
-        //ArrayList<Business> boList = BOList();
+       
         Business bo = Business.createNewBO();
        
     
@@ -65,31 +59,17 @@ public class Review {
         stage.setScene(start);  //sets up default reviewer screen
 
              
-        Label aNumber = new Label("Alien Number: ");
-       // TextField alienNumber = new TextField();    
     
+        Label aNumber = new Label("Alien Number: ");
         Label fName = new Label("First Name: ");
-       // TextField firstName = new TextField();
-      
-
         Label mNames = new Label("Middle Name: \n(Seperate with a ',' or leave empty)");
-       // TextField middleNames = new TextField();
-        
-
         Label lName = new Label("Last Name: ");
-       // TextField lastName = new TextField();
-       
-
         Label bDay = new Label("Date of Birth: \n (Please enter in MM/DD/YYYY)");
-       // TextField DOB = new TextField();
-       
-
         Label mAddress = new Label("Mailing Address for Delivery: ");
-        //TextField mailingAddress = new TextField();
-       
-        
         Label error = new Label();
         Label error2 = new Label();
+
+
         grid.add(error, 0, 8);
         error.setTextFill(Color.RED);
     
@@ -144,14 +124,8 @@ public class Review {
         grid.add(mailingAddress, 1, 5);
 
 
-
-
-
-
-
-
     
-        
+        //loads the data fields screen
         begin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -159,7 +133,7 @@ public class Review {
             }
         }); 
 
-
+        //loads the homescreen
         exit1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -168,6 +142,7 @@ public class Review {
             }
         });
 
+        //loads the homescreen
         exit2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -175,12 +150,12 @@ public class Review {
             }
         });
         
-
+        //allows screen text feilds to be editable
          edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
                 
-                //saved = true;
+                //no entries are opened for review
                 if(!canEdit){
                     error.setText("Get next entry first!");
                 }else{
@@ -198,14 +173,12 @@ public class Review {
         });
         
     
-       
-        
-     
-
+       //loads the data of next item in review queue
         next.setOnAction(new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event){
             
+            //if data is already loaded to the screen, finish this task
             if(firstName.getText().length() != 0){
             error.setText("Opened form should be submitted to approver first!");
             return;
@@ -222,7 +195,9 @@ public class Review {
            }
 
            Integer refN = Integer.parseInt(r);
+           
 
+           //checks refNum value
            if(refN < 1 ){
                 stage.setScene(start);
            }
@@ -236,32 +211,22 @@ public class Review {
            
 
 
-            
+            //loads the textfeilds 
             alienNumber.setText(bo.getAlienNumber());
             alienNumber.setEditable(false);
-                
-    
-           
             
             firstName.setText(bo.getFirstName());
             firstName.setEditable(false);
             
-
-            
             middleNames.setText(printMiddleName(bo.getMiddleName()));
             middleNames.setEditable(false);
            
-
-            
             lastName.setText(bo.getLastName());
             lastName.setEditable(false);
-            
-
-            
+        
             DOB.setText(bo.getDOB());
             DOB.setEditable(false);
             
-           
             mailingAddress.setText(bo.getAddress());
             mailingAddress.setEditable(false);
             
@@ -285,20 +250,17 @@ public class Review {
                     error.setText("No form is currently open for review!");
                     return;
                }
-                bo.setAlienNumber(alienNumber.getText());
-              bo.setRefNumber(Integer.toString(refNumber));
-                bo.setFirstName(firstName.getText());
-               bo.setLastName(lastName.getText());
-
-                // Split on ", " to permit middle names with spaces
-                bo.setMiddleName(middleNames.getText().split(", "));
-                
-               bo.setAddress(mailingAddress.getText());
-               bo.setDOB(DOB.getText());
+            bo.setAlienNumber(alienNumber.getText());
+            bo.setFirstName(firstName.getText());
+            bo.setLastName(lastName.getText());
+            // Split on ", " to permit middle names with spaces
+            bo.setMiddleName(middleNames.getText().split(", "));    
+            bo.setAddress(mailingAddress.getText());
+            bo.setDOB(DOB.getText());
                
-              int validation =  bo.validate();
+            int validation =  bo.validate();
 
-              if(validation == -1){
+            if(validation == -1){
 
               }else if(validation == -1){
                 error.setText("Invalid Ref Number format!");
@@ -314,10 +276,11 @@ public class Review {
                 error.setText("Invalid Address format!");
               }else if(validation == -1){
                 error.setText("Invalid Date of Birth format!");
-              }else{ // returned 1;
+              }else{ // returns 1;
                 bo.saveFile();
                 
-                // Now we need to add it to workflow
+                
+                
                 int status = WorkFlow.addWorkFlow(bo.getRefNum(), "Approver");
                 if(status == -1){
                     error.setText("There was an issue with saving this form!");
