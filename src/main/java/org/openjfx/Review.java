@@ -22,6 +22,9 @@ public class Review {
     private TextField lastName = new TextField();
     private TextField DOB = new TextField();
     private TextField mailingAddress = new TextField();
+    private  boolean canEdit = false;
+    private boolean nextInAction = false;
+    //private boolean saved = false;
     
 
     
@@ -41,7 +44,9 @@ public class Review {
         GridPane sGrid = new GridPane();
         Scene start = new Scene(sGrid);
 
-        ArrayList<Business> boList = BOList();
+        //ArrayList<Business> boList = BOList();
+        Business bo = Business.createNewBO();
+       
     
         
 
@@ -84,6 +89,7 @@ public class Review {
        
         
         Label error = new Label();
+        Label error2 = new Label();
         grid.add(error, 0, 8);
         error.setTextFill(Color.RED);
     
@@ -97,6 +103,7 @@ public class Review {
 
         Button exit1 = new Button("Exit");
         sGrid.add(exit1, 0, 9);
+        sGrid.add(error2, 1, 10);
         
         Button exit2 = new Button("EXIT");
         grid.add(exit2, 0, 9);
@@ -172,19 +179,20 @@ public class Review {
          edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                error.setText("");
-                if(i < 0 || i >= boList.size()){
-                    
-                    error.setText("There is nothing to edit on the screen, get the next item!");
-                    return;
-                }
                 
-                alienNumber.setEditable(true);
-                firstName.setEditable(true);
-                middleNames.setEditable(true);
-                lastName.setEditable(true);
-                DOB.setEditable(true);
-                mailingAddress.setEditable(true);
+                //saved = true;
+                if(!canEdit){
+                    error.setText("Get next entry first!");
+                }else{
+                    error.setText("");
+                
+                    alienNumber.setEditable(true);
+                    firstName.setEditable(true);
+                    middleNames.setEditable(true);
+                    lastName.setEditable(true);
+                    DOB.setEditable(true);
+                    mailingAddress.setEditable(true);
+                }
 
             }
         });
@@ -198,42 +206,63 @@ public class Review {
         @Override
         public void handle(ActionEvent event){
             
-            i++;
-            if(i >= boList.size()){
+            if(firstName.getText().length() != 0){
+            error.setText("Opened form should be submitted to approver first!");
+            return;
+           } 
+           canEdit = true;
+           nextInAction = true;
+          
+
+           String r =  WorkFlow.getNextRef("Reviewer");
+           if(r.charAt(0) == 'N' ){
+                error2.setText("Take a water break, the Reviewer's workflow is currently empty!");
+                stage.setScene(start);
+    
+           }
+
+           Integer refN = Integer.parseInt(r);
+
+           if(refN < 1 ){
+                stage.setScene(start);
+           }
+
+           int val = bo.getFile(r);
+
+           if(val < 0){
                 stage.setScene(App.homeScene);
-                return;
-            }
+           }
              
            
 
 
             
-            alienNumber.setText(boList.get(i).getAlienNumber());
+            alienNumber.setText(bo.getAlienNumber());
             alienNumber.setEditable(false);
                 
     
            
             
-            firstName.setText(boList.get(i).getFirstName());
+            firstName.setText(bo.getFirstName());
             firstName.setEditable(false);
             
 
             
-            middleNames.setText(printMiddleName(boList.get(i).getMiddleName()));
+            middleNames.setText(printMiddleName(bo.getMiddleName()));
             middleNames.setEditable(false);
            
 
             
-            lastName.setText(boList.get(i).getLastName());
+            lastName.setText(bo.getLastName());
             lastName.setEditable(false);
             
 
             
-            DOB.setText(boList.get(i).getDOB());
+            DOB.setText(bo.getDOB());
             DOB.setEditable(false);
             
            
-            mailingAddress.setText(boList.get(i).getAddress());
+            mailingAddress.setText(bo.getAddress());
             mailingAddress.setEditable(false);
             
             
@@ -249,66 +278,75 @@ public class Review {
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
-                
-                if(i<0){
-                    error.setText("Get next form to review by clicking Next button!");
-                }
-                
+               
+                //saved = false;
 
-               if(i >= 0 && i < boList.size()){
-                boList.get(i).setAlienNumber(alienNumber.getText());
-                boList.get(i).setRefNumber(Integer.toString(refNumber));
-                boList.get(i).setFirstName(firstName.getText());
-                boList.get(i).setLastName(lastName.getText());
+               if(!nextInAction){
+                    error.setText("No form is currently open for review!");
+                    return;
+               }
+                bo.setAlienNumber(alienNumber.getText());
+              bo.setRefNumber(Integer.toString(refNumber));
+                bo.setFirstName(firstName.getText());
+               bo.setLastName(lastName.getText());
 
                 // Split on ", " to permit middle names with spaces
-                boList.get(i).setMiddleName(middleNames.getText().split(", "));
+                bo.setMiddleName(middleNames.getText().split(", "));
                 
-                boList.get(i).setAddress(mailingAddress.getText());
-                boList.get(i).setDOB(DOB.getText());
-
+               bo.setAddress(mailingAddress.getText());
+               bo.setDOB(DOB.getText());
                
-                
+              int validation =  bo.validate();
 
-               }
+              if(validation == -1){
+
+              }else if(validation == -1){
+                error.setText("Invalid Ref Number format!");
+              }else if(validation == -1){
+                error.setText("Invalid Alien Number format!");
+              }else if(validation == -1){
+                error.setText("Invalid Last Name format!");
+              }else if(validation == -1){
+                error.setText("Invalid First Name format!");
+              }else if(validation == -1){
+                error.setText("Invalid Middle Name format!");
+              }else if(validation == -1){
+                error.setText("Invalid Address format!");
+              }else if(validation == -1){
+                error.setText("Invalid Date of Birth format!");
+              }else{ // returned 1;
+                bo.saveFile();
+                
+                // Now we need to add it to workflow
+                int status = WorkFlow.addWorkFlow(bo.getRefNum(), "Approver");
+                if(status == -1){
+                    error.setText("There was an issue with saving this form!");
+                }
+
+                stage.setScene(start);
+              }
+
+                //reset textfeilds
+                alienNumber.setText("");
+                alienNumber.setEditable(false);
             
-            if(i == 1){
-            printList(boList);
-            }
-               
+                firstName.setText("");
+                firstName.setEditable(false);
+            
+                middleNames.setText("");
+                middleNames.setEditable(false);
+        
+                lastName.setText("");
+                lastName.setEditable(false);
+            
+                DOB.setText("");
+                DOB.setEditable(false);
+            
+                mailingAddress.setText("");
+                mailingAddress.setEditable(false);
+                canEdit = false;
+                nextInAction = false;
 
-                //reset values for next object in workflow
-               /*grid.getChildren().remove(aNumber);
-                grid.getChildren().remove(alienNumber);
-                
-                grid .getChildren().remove(fName);
-                grid.getChildren().remove(firstName);
-                
-                grid.getChildren().remove(mNames);
-                grid.getChildren().remove(middleNames);
-                
-                grid.getChildren().remove(lName);
-                grid.getChildren().remove(lastName);
-
-                grid.getChildren().remove(bDay);
-                grid.getChildren().remove(DOB);
-
-                grid.getChildren().remove(mAddress);
-                grid.getChildren().remove(mailingAddress);
-*/
-
-               if(i>= boList.size()){
-                stage.setScene(App.homeScene);
-               
-               }
-
-               else if(i<0){
-                error.setText("ERROR: No form is opened for review!");
-               }
-               else{
-                stage.setScene(data);
-               }
-                
             }
         });
 

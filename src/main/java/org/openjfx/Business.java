@@ -25,7 +25,7 @@ public class Business{
     protected int validate(){
         
 
-         if(  refNumber == null || !isNumeric(refNumber) || refNumber.length() != 0){
+         if(  refNumber == null || !isNumeric(refNumber) || refNumber.length() == 0){
             return -1;
         }
         

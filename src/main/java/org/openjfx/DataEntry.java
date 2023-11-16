@@ -152,10 +152,10 @@ public class DataEntry {
                         error.setText("Invalid Date Of Birth! Please Try Again.");
                         return;
                     // Any unexpected output from Validate is "logged" and the addition of the request is aborted
-                    default:
+                   default:
                         System.out.println("ERROR ERROR, Invalid Validate Result!");
                         error.setText("Internal Error! \n Please Notify Support!");
-                        return;
+                        return; 
                     // The rare occurance of us accepting a valid request and saving it. 
                     case 1:
                         BO.saveFile();
