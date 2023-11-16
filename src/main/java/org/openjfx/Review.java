@@ -14,8 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Review {
-    private static int refNumber = 1;
-    public int i = -1;
+    
+
     private TextField alienNumber = new TextField();
     private TextField firstName = new TextField();
     private TextField middleNames = new TextField();
@@ -350,11 +350,10 @@ public class Review {
             }
         });
 
-        //stage.setScene(start);
-        //stage.show();
 
     }  
     
+    /*
     public ArrayList<Business> BOList(){
 
          Business b1 = Business.createNewBO();
@@ -383,6 +382,10 @@ public class Review {
         return boList;
     }
 
+    */
+
+    /*
+
     public void printList(ArrayList<Business> obj){
     
         for(int i = 0; i< obj.size(); i++){
@@ -396,6 +399,10 @@ public class Review {
         }
 
     }
+
+    */
+
+    
     public String printMiddleName(String [] a){
         String s = "";
         for( int i = 0; i< a.length; i++){
@@ -405,4 +412,6 @@ public class Review {
         }
         return s;
     }
+
+    
 }

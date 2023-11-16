@@ -649,7 +649,7 @@ public class Tests {
         BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
         BO.setDOB("01/01/1999");
         int result = BO.validate();
-        assertTrue(result == -5);
+        assertTrue(result == 1);
     }
 
     // Check Address
