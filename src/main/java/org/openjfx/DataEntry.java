@@ -131,25 +131,25 @@ public class DataEntry {
                         return;
                     // Invalid Alien Number
                     case -2:
-                        error.setText("Invalid Alien Number! Please Try Again.");
+                        error.setText("Invalid Alien Number!\n Please Try Again.");
                         return;
                     // Invalid last name somehow
                     case -3:
-                        error.setText("Invalid Last Name! Please Try Again.");
+                        error.setText("Invalid Last Name!\n Please Try Again.");
                         return;
                     // Invalid first name
                     case -4:
-                        error.setText("Invalid First Name! Please Try Again.");
+                        error.setText("Invalid First Name!\n Please Try Again.");
                         return;
                     // Invalid middle name
                     case -5:
-                        error.setText("Invalid Middle Name! Please Try Again.");
+                        error.setText("Invalid Middle Name!\n Please Try Again.");
                         return;
                     case -6:
-                        error.setText("Invalid Mailing Address! Please Try Again.");
+                        error.setText("Invalid Mailing Address!\n Please Try Again.");
                         return;
                     case -7:
-                        error.setText("Invalid Date Of Birth! Please Try Again.");
+                        error.setText("Invalid Date Of Birth!\n Please Try Again.");
                         return;
                     // Any unexpected output from Validate is "logged" and the addition of the request is aborted
                    default:
