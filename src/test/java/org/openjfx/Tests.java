@@ -161,7 +161,7 @@ public class Tests {
     @Test
     @DisplayName("Attempt to read back that work.")
     void pullReviewWork(){
-        WorkFlow.addWorkFlow("123", "Reviewer");
+        //WorkFlow.addWorkFlow("123", "Reviewer");
         String output = WorkFlow.getNextRef("Reviewer");
         assertTrue(output.equals("123"));
     }
@@ -183,7 +183,7 @@ public class Tests {
     @Test
     @DisplayName("Attempt to read back that work")
     void pullApproverWork(){
-        WorkFlow.addWorkFlow("125", "Approver");
+        //WorkFlow.addWorkFlow("125", "Approver");
         String output = WorkFlow.getNextRef("Approver");
         assertTrue(output.equals("125"));
     }
