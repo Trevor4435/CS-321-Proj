@@ -44,7 +44,7 @@ public class Business{
     
        
 
-        if( middleName == null || !checkMiddleName() ){  //can middlename be empty?
+        if( middleName == null || !checkMiddleName() ){  
             return -5;
         }
         
@@ -126,6 +126,10 @@ public class Business{
 
 
     private boolean checkMiddleName(){
+
+        if(this.middleName.length == 0){
+            return true;
+        }
         for( int i = 0; i< this.middleName.length; i++){
         
         if(!isAlpha(this.middleName[i])){
