@@ -17,9 +17,20 @@ import javafx.stage.Stage;
 
 
 public class Approval {
-    public final boolean DEBUG = false; 
+    private boolean emptyWF = false; 
+        
 
     public void showScreen(){
+        // Try to retrieve data through BO
+        Business curBO = Business.createNewBO();   
+        String curRef = WorkFlow.getNextRef("Approver");
+        int check = curBO.getFile(curRef);          // Get data from database
+        if(check == -1){
+                emptyWF = true;
+        }
+
+
+
 
         // Stage set-up
         Stage stage = App.permStage;
@@ -54,13 +65,6 @@ public class Approval {
         Scene errorScene = new Scene(vbox3, 400, 400);
 
 //Options decide
-        // Business object
-        
-        Business curBO = Business.createNewBO();   
-        String curRef = WorkFlow.getNextRef("Approver");
-        curBO.getFile(curRef);          // Get data from database
-        
-
 
         Scene approvalOptionsScene = new Scene(grid, 400, 400);
 
@@ -166,7 +170,7 @@ public class Approval {
         	@Override
         	public void handle(ActionEvent e) {
                         //No item on WF assigned
-                        if(DEBUG){
+                        if(emptyWF){
                                 stage.setScene(errorScene);   
                         }
 
