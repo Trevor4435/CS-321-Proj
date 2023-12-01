@@ -179,7 +179,7 @@ public class Review {
         public void handle(ActionEvent event){
             
             error.setText("");
-            
+
             //if data is already loaded to the screen, finish this task
             if(firstName.getText().length() != 0){
             error.setText("Opened form should be submitted to approver first!");
@@ -311,7 +311,7 @@ public class Review {
                 mailingAddress.setEditable(false);
                 canEdit = false;
                 nextInAction = false;
-
+                error.setText("");
             }
         });
 
