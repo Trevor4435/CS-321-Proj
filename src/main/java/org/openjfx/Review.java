@@ -367,7 +367,7 @@ public class Review {
 
     */
 
-    
+    //helper method returns middle name(s) as a string
     public String printMiddleName(String [] a){
         String s = "";
         for( int i = 0; i< a.length; i++){
