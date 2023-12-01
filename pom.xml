@@ -6,8 +6,11 @@
     <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>20</maven.compiler.release>
-        <junit-jupiter.version>5.9.1</junit-jupiter.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <junit-jupiter.version>5.9.1</junit-jupiter.version> 
+      <!--  <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>-->
+
     </properties>
     <dependencies>
         <dependency>
