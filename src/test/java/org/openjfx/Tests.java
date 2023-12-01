@@ -39,7 +39,7 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("test another valid input, using setter methods, without middlename")
+    @DisplayName("test  invalid input, using setter methods, without middlename, and null address")
     void saveFileBOTest3(){
         
         Business BO = Business.createNewBO();
@@ -49,13 +49,13 @@ public class Tests {
         BO.setFirstName("Losh");
         String[] midName = {};
         BO.setMiddleName(midName);
-        BO.setAddress("456X Red Terrace, Bronzebridge, VA 777");
+        BO.setAddress(null);
         BO.setDOB("12/01/2002");
         
         int result = BO.saveFile();;
         
 
-        assertTrue(result == 1);
+        assertTrue(result == -1);
     }
 
 
