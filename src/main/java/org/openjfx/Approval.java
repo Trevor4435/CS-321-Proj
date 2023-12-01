@@ -41,7 +41,7 @@ public class Approval {
         grid0.setVgap(20);
         grid0.setPadding(new Insets(25,25,25,25));
 
-        Label msg1 = new Label("Press the 'Load' to retreive data");
+        Label msg1 = new Label("Press the 'Load' to retrieve data");
         Button load = new Button("Load");
 
         grid0.add(msg1, 5, 1);
