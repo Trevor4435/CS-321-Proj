@@ -13,7 +13,7 @@ public class Tests {
     }
       
     @Test
-    @DisplayName("test save file with valid input")
+    @DisplayName("test save file with valid input using setter methods")
     void saveFileBOTest1(){
         Business BO = Business.createNewBO();
         BO.setRefNumber("1");
@@ -39,7 +39,7 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("test valid input, using getRef method")
+    @DisplayName("test another valid input, using setter methods, without middlename")
     void saveFileBOTest3(){
         
         Business BO = Business.createNewBO();
@@ -47,19 +47,20 @@ public class Tests {
         BO.setAlienNumber("222222222");
         BO.setLastName("Ree");
         BO.setFirstName("Losh");
-        String[] midName = {"Three", "Fourth"};
+        String[] midName = {};
         BO.setMiddleName(midName);
-        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
-        BO.setDOB("12/13/1970");
-
+        BO.setAddress("456X Red Terrace, Bronzebridge, VA 777");
+        BO.setDOB("12/01/2002");
+        
         int result = BO.saveFile();;
+        
 
         assertTrue(result == 1);
     }
 
 
     @Test
-    @DisplayName("Placeholder")
+    @DisplayName("Testing with valid input")
     void getFileBOTest1(){
         Business BO = Business.createNewBO();
         String[] midName = {"One", "Two"};
@@ -92,28 +93,33 @@ public class Tests {
     }
     
     @Test
-    @DisplayName("Testing the status of invalid output, when unknown if file exists")
+    @DisplayName("Testing the status of invalid input, when unknown if file exists")
     void getFileBOTest4(){
         Business house = Business.createNewBO();
         int output = house.getFile("hihihi");
         assertTrue(output == -1);
     }
-
+    
     @Test
-    @DisplayName("Testing the status of invalid output, should not work cuz file doesn't exist.")
+    @DisplayName("Testing getting the file from a workflow queue")
     void getFileBOTest5(){
         Business BO = Business.createNewBO();
-        String[] midName = {"Three", "Fourth"};
-        int result = BO.getFile("2");
-
+       
+        BO.setRefNumber("1");
+        BO.setAlienNumber("111111111");
+        BO.setLastName("Lee");
+        BO.setFirstName("Josh");
+        String[] midName = {"One", "Two"};
+        BO.setMiddleName(midName);
+        BO.setAddress("123X Green Avenue, Metalbridge, VA 9999");
+        BO.setDOB("12/13/1970");
+        BO.saveFile();  
+        
+        WorkFlow.addWorkFlow(BO.getRefNum(), "Approver");
+        String r =  WorkFlow.getNextRef("Approver");
+        int result = BO.getFile(r);
         assertTrue(result == 1);
-        assertTrue("2".equals(BO.getRefNum()));
-        assertTrue("222222222".equals(BO.getAlienNumber()));
-        assertTrue("Ree".equals(BO.getLastName()));
-        assertTrue("Losh".equals(BO.getFirstName()));
-        assertTrue(Arrays.equals(midName, BO.getMiddleName()));
-        assertTrue("123X Green Avenue, Metalbridge, VA 9999".equals(BO.getAddress()));
-        assertTrue("12/13/1970".equals(BO.getDOB()));
+
     }
 
     @Test
