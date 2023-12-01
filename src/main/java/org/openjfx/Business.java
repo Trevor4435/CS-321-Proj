@@ -44,7 +44,7 @@ public class Business{
     
        
 
-        if( middleName == null || !checkMiddleName() ){  
+        if(  middleName == null || !checkMiddleName() ){  
             return -5;
         }
         

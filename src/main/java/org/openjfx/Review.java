@@ -167,6 +167,7 @@ public class Review {
                     lastName.setEditable(true);
                     DOB.setEditable(true);
                     mailingAddress.setEditable(true);
+                
                 }
 
             }
@@ -255,28 +256,30 @@ public class Review {
             bo.setAlienNumber(alienNumber.getText());
             bo.setFirstName(firstName.getText());
             bo.setLastName(lastName.getText());
+        
             // Split on ", " to permit middle names with spaces
             bo.setMiddleName(middleNames.getText().split(", "));    
             bo.setAddress(mailingAddress.getText());
             bo.setDOB(DOB.getText());
-               
+            
+
+           
+
             int validation =  bo.validate();
 
-            if(validation == -1){
-
-              }else if(validation == -1){
+         if(validation == -1){
                 error.setText("Invalid Ref Number format!");
-              }else if(validation == -1){
+              }else if(validation == -2){
                 error.setText("Invalid Alien Number format!");
-              }else if(validation == -1){
+              }else if(validation == -3){
                 error.setText("Invalid Last Name format!");
-              }else if(validation == -1){
+              }else if(validation == -4){
                 error.setText("Invalid First Name format!");
-              }else if(validation == -1){
+              }else if(validation == -5){
                 error.setText("Invalid Middle Name format!");
-              }else if(validation == -1){
+              }else if(validation == -6){
                 error.setText("Invalid Address format!");
-              }else if(validation == -1){
+              }else if(validation == -7){
                 error.setText("Invalid Date of Birth format!");
               }else{ // returns 1;
                 bo.saveFile();
@@ -289,8 +292,6 @@ public class Review {
                 }
 
                 stage.setScene(start);
-              }
-
                 //reset textfeilds
                 alienNumber.setText("");
                 alienNumber.setEditable(false);
@@ -312,6 +313,9 @@ public class Review {
                 canEdit = false;
                 nextInAction = false;
                 error.setText("");
+              }
+
+                
             }
         });
 
